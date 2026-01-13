@@ -1,0 +1,11 @@
+.Hover:hover {
+    background-color: rgb(196, 205, 206);
+}
+
+.Hover {
+    cursor: pointer;
+}
+
+.selected {
+    background-color: rgb(196, 205, 206);
+}

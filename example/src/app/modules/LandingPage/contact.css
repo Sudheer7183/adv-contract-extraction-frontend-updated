@@ -1,0 +1,139 @@
+/* Contact.css */
+
+/* Section Styles */
+.contact-section {
+  background: linear-gradient(to bottom right, #1E3A8A, #6B21A8);
+  color: #fff;
+  padding: 80px 20px;
+  font-family: sans-serif;
+  transition: background 0.3s ease-in-out;
+}
+
+.contact-section h2 {
+  text-align: center;
+  font-size: 36px;
+  font-weight: 700;
+  margin-bottom: 10px;
+  color: white;
+}
+
+.contact-section p {
+  text-align: center;
+  font-size: 16px;
+  margin-bottom: 50px;
+  color: #e5e7eb;
+}
+
+/* Contact items container */
+.contact-items-container {
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 1200px;
+  margin: 0 auto;
+  gap: 40px;
+  justify-content: center;
+}
+
+/* Contact details container */
+.contact-details {
+  flex: 1;
+  min-width: 300px;
+}
+
+.contact-details h3 {
+  font-size: 24px;
+  margin-bottom: 16px;
+  font-weight: 600;
+  color: white;
+}
+
+.contact-details p {
+  color: #f3f4f6;
+  margin-bottom: 32px;
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+/* Contact Item */
+.contact-item {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 24px;
+  gap: 16px;
+}
+
+.contact-item .icon-container {
+  background-color: var(--accent);
+  border-radius: 50%;
+  padding: 12px;
+  font-size: 20px;
+  color: white;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.contact-item .text-container {
+  font-weight: 600;
+  font-size: 15px;
+}
+
+.contact-item .value-container {
+  white-space: pre-line;
+  color: #f3f4f6;
+  font-size: 14px;
+}
+
+/* Form Styles */
+.form-container {
+  flex: 1;
+  min-width: 300px;
+  background: linear-gradient(to bottom right, rgb(135, 78, 227), #7e22ce);
+  padding: 32px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.2);
+}
+
+.form-container h3 {
+  font-size: 22px;
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: white;
+}
+
+.form-container p {
+  font-size: 14px;
+  margin-bottom: 24px;
+  color: #f8f8f8;
+}
+
+.form-container form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.form-container input,
+.form-container select,
+.form-container textarea {
+  width: 100%;
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: black;
+  font-size: 15px;
+  outline: none;
+}
+
+.form-container button {
+  background: var(--accent);
+  color: white;
+  padding: 14px;
+  font-size: 16px;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}

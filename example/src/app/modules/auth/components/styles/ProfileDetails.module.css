@@ -1,0 +1,128 @@
+/* ProfileDetails.css */
+.profile-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.3);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    overflow: auto;
+    /* Add this to make the modal scrollable */
+}
+
+
+.modal-content {
+    background-color: white;
+    padding: 30px;
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+    width: 700px;
+    margin: 0 auto;
+    max-height: 90vh;
+    /* Set a maximum height to make the content scrollable */
+    overflow-y: auto;
+    /* Add this to make the content scrollable when it overflows */
+}
+
+
+.custom-profile-picture {
+    display: inline-block;
+    padding: 10px 20px;
+}
+
+
+.custom-file-upload {
+    display: inline-block;
+    padding: 10px 20px;
+    cursor: pointer;
+    background-color: #eff2f5;
+    color: #007bff;
+    border: 5px;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+
+.custom-file-upload:hover {
+    background-color: #d5e8fc;
+}
+
+
+.edit-icon {
+    cursor: pointer;
+    position: relative;
+    /* Remove font-size, padding, and border-radius */
+    background-color: #e5e5e5;
+    color: #333;
+    width: 35px;
+    /* Adjust this value to the desired icon width */
+    height: 35px;
+    /* Adjust this value to the desired icon height */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    top: -90px;
+    /* Adjust this value as needed to position the edit icon */
+    left: 350px;
+    /* Adjust this value as needed to position the edit icon */
+}
+
+
+.edit-icon:hover {
+    background-color: #d5e8fc;
+}
+
+
+.change-profile-picture-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+.change-profile-picture-heading button {
+    margin-left: 10px;
+}
+
+
+/* Style the DeleteIcon with red color */
+.delete-icon {
+    color: red;
+    cursor: pointer;
+    transition: color 0.3s;
+    /* Add a smooth color transition on hover */
+}
+
+
+/* Apply hover effect to the DeleteIcon */
+.delete-icon:hover {
+    color: darkred;
+    /* Change the color on hover (you can adjust the color as needed) */
+}
+
+
+/* Add this CSS rule to ensure the dialog appears on top */
+.delete-confirmation-dialog {
+    z-index: 1000;
+    position: fixed !important;
+    overflow: visible;
+    top: 50% !important;
+    left: 50% !important;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 20px;
+    /* border: 1px solid #ccc; */
+}
+
+
+
+
+.material-icons {
+    font-size: 20px;
+    /* Adjust the size of the edit icon */
+}
