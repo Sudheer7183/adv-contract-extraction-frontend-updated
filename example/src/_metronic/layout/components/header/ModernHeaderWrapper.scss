@@ -1,0 +1,145 @@
+@import '../../../../styles/modern-theme.scss';
+
+.modern-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: $modern-header-height;
+  background: $modern-header-bg;
+  border-bottom: 1px solid $modern-header-border;
+  box-shadow: $modern-header-shadow;
+  z-index: $modern-z-fixed;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 $modern-spacing-6;
+  transition: all $modern-transition-base;
+}
+
+.modern-header-brand {
+  display: flex;
+  align-items: center;
+  gap: $modern-spacing-4;
+  min-width: $modern-sidebar-width;
+}
+
+.modern-aside-toggle {
+  display: flex;
+  align-items: center;
+}
+
+.modern-toggle-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border: none;
+  background: transparent;
+  border-radius: $modern-radius-md;
+  cursor: pointer;
+  color: $modern-gray-700;
+  transition: all $modern-transition-base;
+
+  &:hover {
+    background: $modern-gray-100;
+    color: $modern-primary;
+  }
+
+  &:active {
+    transform: scale(0.95);
+  }
+
+  svg, i {
+    font-size: 24px;
+  }
+}
+
+.modern-logo {
+  display: flex;
+  align-items: center;
+
+  a {
+    display: flex;
+    align-items: center;
+  }
+}
+
+.modern-logo-img {
+  height: 40px;
+  max-width: 200px;
+  object-fit: contain;
+}
+
+.modern-mobile-toggle {
+  display: none;
+  align-items: center;
+  margin-left: auto;
+}
+
+.modern-mobile-toggle-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: $modern-radius-md;
+  cursor: pointer;
+  color: $modern-gray-700;
+  transition: all $modern-transition-base;
+
+  &:hover {
+    background: $modern-gray-100;
+    color: $modern-primary;
+  }
+}
+
+.modern-header-toolbar {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: $modern-spacing-4;
+}
+
+// Responsive
+@media (max-width: 991px) {
+  .modern-header {
+    padding: 0 $modern-spacing-4;
+  }
+
+  .modern-header-brand {
+    min-width: auto;
+    gap: $modern-spacing-2;
+  }
+
+  .modern-aside-toggle {
+    display: none;
+  }
+
+  .modern-mobile-toggle {
+    display: flex;
+  }
+
+  .modern-logo-img {
+    height: 32px;
+  }
+}
+
+@media (max-width: 576px) {
+  .modern-header {
+    padding: 0 $modern-spacing-3;
+  }
+
+  .modern-header-toolbar {
+    gap: $modern-spacing-2;
+  }
+}
+
+// Minimize state
+body[data-kt-aside-minimize='on'] {
+  .modern-header-brand {
+    min-width: $modern-sidebar-collapsed;
+  }
+}
