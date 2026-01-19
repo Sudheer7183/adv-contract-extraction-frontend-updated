@@ -21,11 +21,12 @@ body {
 }
 
 // ============================================
-// HEADER
+// HEADER - White background to match sidebar
 // ============================================
 
 .header {
   background: #FFFFFF !important;
+  background-color: #FFFFFF !important;
   border-bottom: 1px solid $modern-gray-200 !important;
   box-shadow: $modern-shadow-sm !important;
   height: $modern-header-height !important;
@@ -33,7 +34,37 @@ body {
 
 .header-brand {
   background: #FFFFFF !important;
+  background-color: #FFFFFF !important;
   border-right: 1px solid $modern-gray-200 !important;
+}
+
+// Toolbar area styling
+.toolbar {
+  background: #FFFFFF !important;
+  background-color: #FFFFFF !important;
+}
+
+.header-menu {
+  background: #FFFFFF !important;
+  background-color: #FFFFFF !important;
+}
+
+// Override any theme-specific header colors
+#kt_header {
+  background: #FFFFFF !important;
+  background-color: #FFFFFF !important;
+}
+
+// Header container
+.header-container {
+  background: transparent !important;
+  background-color: transparent !important;
+}
+
+// Override any asideTheme classes that might add colors
+[class*="asideTheme"] {
+  background: #FFFFFF !important;
+  background-color: #FFFFFF !important;
 }
 
 // ============================================
