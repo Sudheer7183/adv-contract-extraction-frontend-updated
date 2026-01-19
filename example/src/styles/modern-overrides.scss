@@ -251,10 +251,26 @@ body[data-kt-aside-minimize='on'] {
     }
   }
 
-  // Keep header-brand (logo) at full width
+  // Header-brand (logo) collapses with sidebar for proper alignment
   .header-brand {
-    width: $modern-sidebar-width !important;
-    min-width: $modern-sidebar-width !important;
+    width: $modern-sidebar-collapsed !important;
+    min-width: $modern-sidebar-collapsed !important;
+    overflow: hidden !important;
+
+    // Center logo in collapsed state
+    .p-5 {
+      padding: 0 !important;
+      display: flex !important;
+      justify-content: center !important;
+      align-items: center !important;
+      width: 100% !important;
+    }
+
+    // Logo styling when collapsed
+    img {
+      max-width: 50px !important;
+      height: auto !important;
+    }
   }
 
   // Content shifts for collapsed sidebar only
