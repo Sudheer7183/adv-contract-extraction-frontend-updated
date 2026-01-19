@@ -133,6 +133,72 @@ body {
 }
 
 // ============================================
+// SIDEBAR MINIMIZE STATE
+// ============================================
+
+body[data-kt-aside-minimize='on'] {
+  .aside {
+    width: $modern-sidebar-collapsed !important;
+
+    .aside-menu {
+      .menu {
+        .menu-item {
+          .menu-link {
+            padding: $modern-spacing-3 !important;
+            justify-content: center;
+
+            .menu-title,
+            .menu-arrow {
+              display: none !important;
+            }
+
+            .menu-icon {
+              margin: 0 !important;
+            }
+          }
+
+          &.here,
+          &.show {
+            > .menu-link {
+              position: relative;
+
+              &::after {
+                content: '';
+                position: absolute;
+                left: 0;
+                top: 50%;
+                transform: translateY(-50%);
+                width: 4px;
+                height: 70%;
+                background: $modern-primary;
+                border-radius: 0 $modern-radius-sm $modern-radius-sm 0;
+              }
+            }
+          }
+
+          .menu-sub {
+            display: none !important;
+          }
+        }
+
+        .menu-section {
+          display: none !important;
+        }
+      }
+    }
+  }
+
+  .header-brand {
+    width: $modern-sidebar-collapsed !important;
+    min-width: $modern-sidebar-collapsed !important;
+  }
+
+  .wrapper {
+    margin-left: $modern-sidebar-collapsed !important;
+  }
+}
+
+// ============================================
 // CONTENT AREA
 // ============================================
 

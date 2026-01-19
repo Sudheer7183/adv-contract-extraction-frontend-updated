@@ -8,17 +8,11 @@ import { AsideToolbar } from './AsideToolbar'
 
 const AsideDefault: FC = () => {
   const { classes } = useLayout()
-  const themeColor = localStorage.getItem("themeColor")
-
-  const asideTheme1 = "asideTheme" + "-" + themeColor + " " + "aside"
-
-
 
   return (
     <div
       id='kt_aside'
-      className={asideTheme1}
-      // className='aside'
+      className='aside'
       data-kt-drawer='true'
       data-kt-drawer-name='aside'
       data-kt-drawer-activate='{default: true, lg: false}'

@@ -81,7 +81,7 @@ query assignProjectUserid($id: String!, $searchValue: String!) {
   }
 }`
 
-const ReviewTable = () => {
+const ModernReviewTable = () => {
   const [data2, setdata2] = useState<any[]>([])
   const [data3, setdata3] = useState<any[]>([]);
   const [data4, setdata4] = useState<any[]>([]);
@@ -321,4 +321,4 @@ const ReviewTable = () => {
   )
 }
 
-export { ReviewTable }
+export { ModernReviewTable }
