@@ -1,7 +1,6 @@
 import React, { FC, lazy, Suspense } from 'react';
 import { Navigate, Route, Routes } from 'react-router-dom'
 import { MasterLayout } from '../../_metronic/layout/MasterLayout'
-import { ModernMasterLayout } from '../../_metronic/layout/ModernMasterLayout'
 import TopBarProgress from 'react-topbar-progress-indicator'
 import { DashboardWrapper } from '../pages/dashboard/DashboardWrapper'
 import { getCSSVariableValue } from '../../_metronic/assets/ts/_utils'
@@ -38,7 +37,7 @@ const PrivateRoutes = () => {
 
   return (
     <Routes>
-      <Route element={<ModernMasterLayout />}>
+      <Route element={<MasterLayout />}>
         {/* Redirect to Dashboard after success login/registartion */}
         {isSuperuser && !userRole && (
           <>
