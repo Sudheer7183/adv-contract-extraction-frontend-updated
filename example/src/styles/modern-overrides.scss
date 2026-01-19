@@ -251,31 +251,36 @@ body[data-kt-aside-minimize='on'] {
     }
   }
 
-  // Header-brand (logo) collapses with sidebar for proper alignment
+  // Header-brand (logo) stays at full width - DO NOT collapse
   .header-brand {
-    width: $modern-sidebar-collapsed !important;
-    min-width: $modern-sidebar-collapsed !important;
-    overflow: hidden !important;
-
-    // Center logo in collapsed state
-    .p-5 {
-      padding: 0 !important;
-      display: flex !important;
-      justify-content: center !important;
-      align-items: center !important;
-      width: 100% !important;
-    }
-
-    // Logo styling when collapsed
-    img {
-      max-width: 50px !important;
-      height: auto !important;
-    }
+    width: $modern-sidebar-width !important;
+    min-width: $modern-sidebar-width !important;
+    // Logo stays visible at full size
   }
 
   // Content shifts for collapsed sidebar only
   .wrapper {
     margin-left: $modern-sidebar-collapsed !important;
+  }
+
+  // Fix toolbar dropdown positioning when sidebar is collapsed
+  .toolbar {
+    position: relative !important;
+    overflow: visible !important;
+    z-index: 100 !important;
+  }
+
+  // Ensure header has proper overflow and positioning
+  .header {
+    overflow: visible !important;
+    z-index: 105 !important;
+  }
+
+  // Fix dropdown menu positioning in toolbar
+  .toolbar .dropdown-menu,
+  .header .dropdown-menu {
+    position: absolute !important;
+    z-index: 1050 !important;
   }
 }
 
@@ -565,6 +570,8 @@ body[data-kt-aside-minimize='on'] {
   border: 1px solid $modern-gray-200 !important;
   box-shadow: $modern-shadow-lg !important;
   padding: $modern-spacing-2 !important;
+  position: absolute !important;
+  z-index: 1050 !important;
 
   .dropdown-item {
     border-radius: $modern-radius-md !important;
@@ -585,6 +592,31 @@ body[data-kt-aside-minimize='on'] {
 
   .dropdown-divider {
     border-color: $modern-gray-200 !important;
+  }
+}
+
+// Ensure toolbar dropdowns are positioned correctly
+.toolbar,
+.header-menu,
+.header {
+  .dropdown,
+  .dropup,
+  .dropend,
+  .dropstart {
+    position: relative !important;
+  }
+
+  .dropdown-toggle {
+    &::after {
+      vertical-align: middle !important;
+    }
+  }
+}
+
+// Fix for menu dropdowns in toolbar
+.menu-dropdown {
+  .dropdown-menu {
+    margin-top: 0.5rem !important;
   }
 }
 
