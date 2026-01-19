@@ -209,11 +209,13 @@ body[data-kt-aside-minimize='on'] {
     }
   }
 
+  // Keep header-brand (logo) at full width
   .header-brand {
-    width: $modern-sidebar-collapsed !important;
-    min-width: $modern-sidebar-collapsed !important;
+    width: $modern-sidebar-width !important;
+    min-width: $modern-sidebar-width !important;
   }
 
+  // Content shifts for collapsed sidebar only
   .wrapper {
     margin-left: $modern-sidebar-collapsed !important;
   }
