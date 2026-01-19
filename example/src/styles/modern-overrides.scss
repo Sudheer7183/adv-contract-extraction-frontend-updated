@@ -146,6 +146,8 @@ body[data-kt-aside-minimize='on'] {
           .menu-link {
             padding: $modern-spacing-3 !important;
             justify-content: center;
+            display: flex !important;
+            align-items: center !important;
 
             .menu-title,
             .menu-arrow {
@@ -154,6 +156,25 @@ body[data-kt-aside-minimize='on'] {
 
             .menu-icon {
               margin: 0 !important;
+              display: flex !important;
+              align-items: center !important;
+              justify-content: center !important;
+              width: 24px !important;
+              height: 24px !important;
+              font-size: 1.5rem !important;
+
+              i, svg {
+                display: block !important;
+                font-size: 1.5rem !important;
+                width: 24px !important;
+                height: 24px !important;
+              }
+
+              .svg-icon {
+                display: block !important;
+                width: 24px !important;
+                height: 24px !important;
+              }
             }
           }
 
