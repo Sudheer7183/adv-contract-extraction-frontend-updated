@@ -1,0 +1,1154 @@
+export type Maybe<T> = T | null;
+export type InputMaybe<T> = Maybe<T>;
+export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
+export type MakeOptional<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]?: Maybe<T[SubKey]> };
+export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]: Maybe<T[SubKey]> };
+/** All built-in and custom scalars, mapped to their actual values */
+export type Scalars = {
+  ID: string;
+  String: string;
+  Boolean: boolean;
+  Int: number;
+  Float: number;
+  DateTime: any;
+  ExpectedErrorType: any;
+};
+
+export type ClassificationFileType = {
+  __typename?: 'ClassificationFileType';
+  id: Scalars['ID'];
+  jsonFile: Scalars['String'];
+  projects: ProjectWithUserTypeConnection;
+  worksheet: WorksheetTypeConnection;
+};
+
+
+export type ClassificationFileTypeProjectsArgs = {
+  after?: InputMaybe<Scalars['String']>;
+  before?: InputMaybe<Scalars['String']>;
+  first?: InputMaybe<Scalars['Int']>;
+  last?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  projectName?: InputMaybe<Scalars['String']>;
+  projectName_Icontains?: InputMaybe<Scalars['String']>;
+};
+
+
+export type ClassificationFileTypeWorksheetArgs = {
+  after?: InputMaybe<Scalars['String']>;
+  before?: InputMaybe<Scalars['String']>;
+  classificationFile?: InputMaybe<Scalars['ID']>;
+  first?: InputMaybe<Scalars['Int']>;
+  last?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+};
+
+export type CreateUser = {
+  __typename?: 'CreateUser';
+  users?: Maybe<UserType>;
+};
+
+export type CreationProjects = {
+  __typename?: 'CreationProjects';
+  projects?: Maybe<ProjectsType>;
+};
+
+export type DbDataViewType = Node & {
+  __typename?: 'DBDataViewType';
+  doctype: Scalars['String'];
+  effectiveDate?: Maybe<Scalars['String']>;
+  expirationDate?: Maybe<Scalars['String']>;
+  fileName: Scalars['String'];
+  governingLaw?: Maybe<Scalars['String']>;
+  /** The ID of the object. */
+  id: Scalars['ID'];
+  parties?: Maybe<Scalars['String']>;
+  paymentDueDates?: Maybe<Scalars['String']>;
+  paymentMethod?: Maybe<Scalars['String']>;
+  projectName: Scalars['String'];
+  title?: Maybe<Scalars['String']>;
+  venue?: Maybe<Scalars['String']>;
+};
+
+export type DbDataViewTypeConnection = {
+  __typename?: 'DBDataViewTypeConnection';
+  /** Contains the nodes in this connection. */
+  edges: Array<Maybe<DbDataViewTypeEdge>>;
+  /** Pagination data for this connection. */
+  pageInfo: PageInfo;
+};
+
+/** A Relay edge containing a `DBDataViewType` and its cursor. */
+export type DbDataViewTypeEdge = {
+  __typename?: 'DBDataViewTypeEdge';
+  /** A cursor for use in pagination */
+  cursor: Scalars['String'];
+  /** The item at the end of the edge */
+  node?: Maybe<DbDataViewType>;
+};
+
+export type DataViewType = {
+  __typename?: 'DataViewType';
+  createdAt?: Maybe<Scalars['DateTime']>;
+  createdBy?: Maybe<UserWithProjectType>;
+  effectiveDate?: Maybe<Scalars['String']>;
+  expirationDate?: Maybe<Scalars['String']>;
+  file: ProjectFileType;
+  governingLaw?: Maybe<Scalars['String']>;
+  id: Scalars['ID'];
+  modifiedAt?: Maybe<Scalars['DateTime']>;
+  modifiedBy?: Maybe<UserWithProjectType>;
+  parties?: Maybe<Scalars['String']>;
+  paymentDueDates?: Maybe<Scalars['String']>;
+  paymentMethod?: Maybe<Scalars['String']>;
+  title?: Maybe<Scalars['String']>;
+  venue?: Maybe<Scalars['String']>;
+};
+
+export type DeactiveProject = {
+  __typename?: 'DeactiveProject';
+  ok?: Maybe<Scalars['Boolean']>;
+};
+
+export type DeactiveUser = {
+  __typename?: 'DeactiveUser';
+  ok?: Maybe<Scalars['Boolean']>;
+};
+
+export type DocDataType = Node & {
+  __typename?: 'DocDataType';
+  createdAt?: Maybe<Scalars['DateTime']>;
+  createdBy?: Maybe<UserWithProjectType>;
+  fieldId?: Maybe<Scalars['String']>;
+  fieldName?: Maybe<Scalars['String']>;
+  fieldValue: Scalars['String'];
+  file: ProjectFileType;
+  /** The ID of the object. */
+  id: Scalars['ID'];
+  modifiedAt?: Maybe<Scalars['DateTime']>;
+  modifiedBy?: Maybe<UserWithProjectType>;
+  project: ProjectWithUserType;
+};
+
+export type DocDataTypeConnection = {
+  __typename?: 'DocDataTypeConnection';
+  /** Contains the nodes in this connection. */
+  edges: Array<Maybe<DocDataTypeEdge>>;
+  /** Pagination data for this connection. */
+  pageInfo: PageInfo;
+};
+
+/** A Relay edge containing a `DocDataType` and its cursor. */
+export type DocDataTypeEdge = {
+  __typename?: 'DocDataTypeEdge';
+  /** A cursor for use in pagination */
+  cursor: Scalars['String'];
+  /** The item at the end of the edge */
+  node?: Maybe<DocDataType>;
+};
+
+export type DoctypeChartType = {
+  __typename?: 'DoctypeChartType';
+  count?: Maybe<Scalars['Int']>;
+  doctype: Scalars['String'];
+  id: Scalars['Int'];
+  percentage?: Maybe<Scalars['Float']>;
+};
+
+export type FileChartType = {
+  __typename?: 'FileChartType';
+  count?: Maybe<Scalars['Int']>;
+  doctype: Scalars['String'];
+  fileStatus: Scalars['String'];
+  id: Scalars['Int'];
+};
+
+export type FileStatusChartType = {
+  __typename?: 'FileStatusChartType';
+  count?: Maybe<Scalars['Int']>;
+  fileStatus: Scalars['String'];
+  id: Scalars['Int'];
+  percentage?: Maybe<Scalars['Float']>;
+};
+
+export type FileStatusMutation = {
+  __typename?: 'FileStatusMutation';
+  file?: Maybe<ProjectFileType>;
+};
+
+export type Mutation = {
+  __typename?: 'Mutation';
+  createProjects?: Maybe<CreationProjects>;
+  createUser?: Maybe<CreateUser>;
+  deactiveProject?: Maybe<DeactiveProject>;
+  deactiveUser?: Maybe<DeactiveUser>;
+  fileStatus?: Maybe<FileStatusMutation>;
+  /**
+   * Change user password without old password.
+   *
+   * Receive the token that was sent by email.
+   *
+   * If token and new passwords are valid, update
+   * user password and in case of using refresh
+   * tokens, revoke all of them.
+   *
+   * Also, if user has not been verified yet, verify it.
+   */
+  passwordReset?: Maybe<PasswordReset>;
+  /**
+   * Sends activation email.
+   *
+   * It is called resend because theoretically
+   * the first activation email was sent when
+   * the user registered.
+   *
+   * If there is no user with the requested email,
+   * a successful response is returned.
+   */
+  resendActivationEmail?: Maybe<ResendActivationEmail>;
+  /**
+   * Send password reset email.
+   *
+   * For non verified users, send an activation
+   * email instead.
+   *
+   * Accepts both primary and secondary email.
+   *
+   * If there is no user with the requested email,
+   * a successful response is returned.
+   */
+  sendPasswordResetEmail?: Maybe<SendPasswordResetEmail>;
+  /**
+   * Obtain JSON web token for given user.
+   *
+   * Allow to perform login with different fields,
+   * and secondary email if set. The fields are
+   * defined on settings.
+   *
+   * Not verified users can login by default. This
+   * can be changes on settings.
+   *
+   * If user is archived, make it unarchive and
+   * return `unarchiving=True` on output.
+   */
+  tokenAuth?: Maybe<ObtainJsonWebToken>;
+  unlockFile?: Maybe<UnlockFileMutation>;
+  /**
+   * Update user model fields, defined on settings.
+   *
+   * User must be verified.
+   */
+  updateAccount?: Maybe<UpdateAccount>;
+  updateProjects?: Maybe<UpdateProjects>;
+  updateUser?: Maybe<UpdateUser>;
+  /**
+   * Verify user account.
+   *
+   * Receive the token that was sent by email.
+   * If the token is valid, make the user verified
+   * by making the `user.status.verified` field true.
+   */
+  verifyAccount?: Maybe<VerifyAccount>;
+};
+
+
+export type MutationCreateProjectsArgs = {
+  input: ProjectInput;
+};
+
+
+export type MutationCreateUserArgs = {
+  input: UsersInput;
+};
+
+
+export type MutationDeactiveProjectArgs = {
+  folder?: InputMaybe<Scalars['String']>;
+  projectName?: InputMaybe<Scalars['String']>;
+};
+
+
+export type MutationDeactiveUserArgs = {
+  email?: InputMaybe<Scalars['String']>;
+};
+
+
+export type MutationFileStatusArgs = {
+  filename?: InputMaybe<Scalars['String']>;
+  foldername?: InputMaybe<Scalars['String']>;
+};
+
+
+export type MutationPasswordResetArgs = {
+  newPassword1: Scalars['String'];
+  newPassword2: Scalars['String'];
+  token: Scalars['String'];
+};
+
+
+export type MutationResendActivationEmailArgs = {
+  email: Scalars['String'];
+};
+
+
+export type MutationSendPasswordResetEmailArgs = {
+  email: Scalars['String'];
+};
+
+
+export type MutationTokenAuthArgs = {
+  email?: InputMaybe<Scalars['String']>;
+  password: Scalars['String'];
+  username?: InputMaybe<Scalars['String']>;
+};
+
+
+export type MutationUnlockFileArgs = {
+  filename?: InputMaybe<Scalars['String']>;
+  foldername?: InputMaybe<Scalars['String']>;
+};
+
+
+export type MutationUpdateAccountArgs = {
+  firstName?: InputMaybe<Scalars['String']>;
+  lastName?: InputMaybe<Scalars['String']>;
+};
+
+
+export type MutationUpdateProjectsArgs = {
+  input: UpdateProjectUserInput;
+};
+
+
+export type MutationUpdateUserArgs = {
+  input: UpdateUserProjectInput;
+};
+
+
+export type MutationVerifyAccountArgs = {
+  token: Scalars['String'];
+};
+
+/** An object with an ID */
+export type Node = {
+  /** The ID of the object. */
+  id: Scalars['ID'];
+};
+
+/**
+ * Obtain JSON web token for given user.
+ *
+ * Allow to perform login with different fields,
+ * and secondary email if set. The fields are
+ * defined on settings.
+ *
+ * Not verified users can login by default. This
+ * can be changes on settings.
+ *
+ * If user is archived, make it unarchive and
+ * return `unarchiving=True` on output.
+ */
+export type ObtainJsonWebToken = {
+  __typename?: 'ObtainJSONWebToken';
+  errors?: Maybe<Scalars['ExpectedErrorType']>;
+  refreshToken?: Maybe<Scalars['String']>;
+  success?: Maybe<Scalars['Boolean']>;
+  token?: Maybe<Scalars['String']>;
+  unarchiving?: Maybe<Scalars['Boolean']>;
+  user?: Maybe<UserNode>;
+};
+
+/** The Relay compliant `PageInfo` type, containing data necessary to paginate this connection. */
+export type PageInfo = {
+  __typename?: 'PageInfo';
+  /** When paginating forwards, the cursor to continue. */
+  endCursor?: Maybe<Scalars['String']>;
+  /** When paginating forwards, are there more items? */
+  hasNextPage: Scalars['Boolean'];
+  /** When paginating backwards, are there more items? */
+  hasPreviousPage: Scalars['Boolean'];
+  /** When paginating backwards, the cursor to continue. */
+  startCursor?: Maybe<Scalars['String']>;
+};
+
+/**
+ * Change user password without old password.
+ *
+ * Receive the token that was sent by email.
+ *
+ * If token and new passwords are valid, update
+ * user password and in case of using refresh
+ * tokens, revoke all of them.
+ *
+ * Also, if user has not been verified yet, verify it.
+ */
+export type PasswordReset = {
+  __typename?: 'PasswordReset';
+  errors?: Maybe<Scalars['ExpectedErrorType']>;
+  success?: Maybe<Scalars['Boolean']>;
+};
+
+export type ProjectChartType = {
+  __typename?: 'ProjectChartType';
+  count?: Maybe<Scalars['Int']>;
+  doctype: Scalars['String'];
+  id: Scalars['Int'];
+  projectName: Scalars['String'];
+};
+
+export type ProjectFileType = Node & {
+  __typename?: 'ProjectFileType';
+  dataview: Array<DataViewType>;
+  docdata: DocDataTypeConnection;
+  doctype: Scalars['String'];
+  fileName: Scalars['String'];
+  filePath: Scalars['String'];
+  fileStatus: Scalars['String'];
+  fileType: Scalars['String'];
+  height?: Maybe<Scalars['Int']>;
+  /** The ID of the object. */
+  id: Scalars['ID'];
+  lock?: Maybe<Scalars['Boolean']>;
+  lockedBy?: Maybe<UserWithProjectType>;
+  pages?: Maybe<Scalars['Int']>;
+  projectName: Scalars['String'];
+  viewerPath: Scalars['String'];
+  width?: Maybe<Scalars['Int']>;
+  zuvaFileId: Scalars['String'];
+};
+
+
+export type ProjectFileTypeDocdataArgs = {
+  after?: InputMaybe<Scalars['String']>;
+  before?: InputMaybe<Scalars['String']>;
+  first?: InputMaybe<Scalars['Int']>;
+  last?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+};
+
+export type ProjectFileTypeConnection = {
+  __typename?: 'ProjectFileTypeConnection';
+  /** Contains the nodes in this connection. */
+  edges: Array<Maybe<ProjectFileTypeEdge>>;
+  /** Pagination data for this connection. */
+  pageInfo: PageInfo;
+};
+
+/** A Relay edge containing a `ProjectFileType` and its cursor. */
+export type ProjectFileTypeEdge = {
+  __typename?: 'ProjectFileTypeEdge';
+  /** A cursor for use in pagination */
+  cursor: Scalars['String'];
+  /** The item at the end of the edge */
+  node?: Maybe<ProjectFileType>;
+};
+
+export type ProjectInput = {
+  active?: InputMaybe<Scalars['Boolean']>;
+  assignUser: Array<InputMaybe<UserInput>>;
+  classificationFileId?: InputMaybe<Scalars['Int']>;
+  description?: InputMaybe<Scalars['String']>;
+  projectName?: InputMaybe<Scalars['String']>;
+};
+
+export type ProjectWithUserType = Node & {
+  __typename?: 'ProjectWithUserType';
+  active: Scalars['Boolean'];
+  classificationFile: ClassificationFileType;
+  createdAt: Scalars['DateTime'];
+  createdBy?: Maybe<UserWithProjectType>;
+  description: Scalars['String'];
+  docdata: DocDataTypeConnection;
+  /** The ID of the object. */
+  id: Scalars['ID'];
+  modifiedAt: Scalars['DateTime'];
+  modifiedBy?: Maybe<UserWithProjectType>;
+  projectId?: Maybe<Scalars['Int']>;
+  projectName: Scalars['String'];
+  totalFiles?: Maybe<Scalars['Int']>;
+  users?: Maybe<Array<Maybe<UserType>>>;
+};
+
+
+export type ProjectWithUserTypeDocdataArgs = {
+  after?: InputMaybe<Scalars['String']>;
+  before?: InputMaybe<Scalars['String']>;
+  first?: InputMaybe<Scalars['Int']>;
+  last?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+};
+
+export type ProjectWithUserTypeConnection = {
+  __typename?: 'ProjectWithUserTypeConnection';
+  /** Contains the nodes in this connection. */
+  edges: Array<Maybe<ProjectWithUserTypeEdge>>;
+  /** Pagination data for this connection. */
+  pageInfo: PageInfo;
+};
+
+/** A Relay edge containing a `ProjectWithUserType` and its cursor. */
+export type ProjectWithUserTypeEdge = {
+  __typename?: 'ProjectWithUserTypeEdge';
+  /** A cursor for use in pagination */
+  cursor: Scalars['String'];
+  /** The item at the end of the edge */
+  node?: Maybe<ProjectWithUserType>;
+};
+
+export type ProjectsInput = {
+  projectName: Scalars['String'];
+};
+
+export type ProjectsType = Node & {
+  __typename?: 'ProjectsType';
+  active: Scalars['Boolean'];
+  classificationFile: ClassificationFileType;
+  createdAt: Scalars['DateTime'];
+  createdBy?: Maybe<UserWithProjectType>;
+  description: Scalars['String'];
+  docdata: DocDataTypeConnection;
+  /** The ID of the object. */
+  id: Scalars['ID'];
+  modifiedAt: Scalars['DateTime'];
+  modifiedBy?: Maybe<UserWithProjectType>;
+  projectId?: Maybe<Scalars['Int']>;
+  projectName: Scalars['String'];
+  totalFiles?: Maybe<Scalars['Int']>;
+};
+
+
+export type ProjectsTypeDocdataArgs = {
+  after?: InputMaybe<Scalars['String']>;
+  before?: InputMaybe<Scalars['String']>;
+  first?: InputMaybe<Scalars['Int']>;
+  last?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+};
+
+export type ProjectsTypeConnection = {
+  __typename?: 'ProjectsTypeConnection';
+  /** Contains the nodes in this connection. */
+  edges: Array<Maybe<ProjectsTypeEdge>>;
+  /** Pagination data for this connection. */
+  pageInfo: PageInfo;
+};
+
+/** A Relay edge containing a `ProjectsType` and its cursor. */
+export type ProjectsTypeEdge = {
+  __typename?: 'ProjectsTypeEdge';
+  /** A cursor for use in pagination */
+  cursor: Scalars['String'];
+  /** The item at the end of the edge */
+  node?: Maybe<ProjectsType>;
+};
+
+export type Query = {
+  __typename?: 'Query';
+  activeProject?: Maybe<ProjectsTypeConnection>;
+  allClassificationFiles?: Maybe<Array<Maybe<ClassificationFileType>>>;
+  allFields?: Maybe<WorksheetTypeConnection>;
+  allFile?: Maybe<ProjectFileTypeConnection>;
+  allProjects?: Maybe<Array<Maybe<ProjectsType>>>;
+  assignProjectUserid?: Maybe<UserProjectTypeConnection>;
+  barchartFiles?: Maybe<ProjectFileTypeConnection>;
+  chartFiles?: Maybe<ProjectFileTypeConnection>;
+  dataView?: Maybe<DocDataTypeConnection>;
+  dataviewById?: Maybe<DocDataTypeConnection>;
+  doctypePiechart?: Maybe<Array<Maybe<DoctypeChartType>>>;
+  fields?: Maybe<WorksheetTypeConnection>;
+  file?: Maybe<ProjectFileTypeConnection>;
+  fileBarchart?: Maybe<Array<Maybe<FileChartType>>>;
+  fileStatus?: Maybe<Array<Maybe<ProjectFileType>>>;
+  fileStatusPiechart?: Maybe<Array<Maybe<FileStatusChartType>>>;
+  files?: Maybe<ProjectFileTypeConnection>;
+  filesDetail?: Maybe<Array<Maybe<ProjectFileType>>>;
+  lock?: Maybe<ProjectFileTypeConnection>;
+  me?: Maybe<UserNode>;
+  projectBarchart?: Maybe<Array<Maybe<ProjectChartType>>>;
+  projectWithUser?: Maybe<ProjectWithUserTypeConnection>;
+  projects?: Maybe<ProjectsTypeConnection>;
+  reviewUser?: Maybe<UserTypeConnection>;
+  userDataviewDetail?: Maybe<DbDataViewTypeConnection>;
+  userWithProject?: Maybe<UserWithProjectTypeConnection>;
+  users?: Maybe<Array<Maybe<UserType>>>;
+};
+
+
+export type QueryActiveProjectArgs = {
+  active?: InputMaybe<Scalars['Boolean']>;
+  active_Icontains?: InputMaybe<Scalars['Boolean']>;
+  after?: InputMaybe<Scalars['String']>;
+  before?: InputMaybe<Scalars['String']>;
+  first?: InputMaybe<Scalars['Int']>;
+  isactive?: InputMaybe<Scalars['Boolean']>;
+  last?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  projectName?: InputMaybe<Scalars['String']>;
+  projectName_Icontains?: InputMaybe<Scalars['String']>;
+};
+
+
+export type QueryAllFieldsArgs = {
+  after?: InputMaybe<Scalars['String']>;
+  before?: InputMaybe<Scalars['String']>;
+  classificationFile?: InputMaybe<Scalars['ID']>;
+  first?: InputMaybe<Scalars['Int']>;
+  id?: InputMaybe<Scalars['Int']>;
+  last?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+};
+
+
+export type QueryAllFileArgs = {
+  after?: InputMaybe<Scalars['String']>;
+  before?: InputMaybe<Scalars['String']>;
+  fileStatus?: InputMaybe<Scalars['String']>;
+  fileStatus_Icontains?: InputMaybe<Scalars['String']>;
+  filestatus: Array<InputMaybe<StatusInput>>;
+  first?: InputMaybe<Scalars['Int']>;
+  last?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  projectName?: InputMaybe<Scalars['String']>;
+  projectName_Icontains?: InputMaybe<Scalars['String']>;
+};
+
+
+export type QueryAssignProjectUseridArgs = {
+  after?: InputMaybe<Scalars['String']>;
+  before?: InputMaybe<Scalars['String']>;
+  first?: InputMaybe<Scalars['Int']>;
+  id?: InputMaybe<Scalars['String']>;
+  last?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+};
+
+
+export type QueryBarchartFilesArgs = {
+  after?: InputMaybe<Scalars['String']>;
+  barchart?: InputMaybe<Scalars['String']>;
+  before?: InputMaybe<Scalars['String']>;
+  classificationType?: InputMaybe<Scalars['String']>;
+  fileStatus?: InputMaybe<Scalars['String']>;
+  fileStatus_Icontains?: InputMaybe<Scalars['String']>;
+  first?: InputMaybe<Scalars['Int']>;
+  last?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  projectName?: InputMaybe<Scalars['String']>;
+  projectName_Icontains?: InputMaybe<Scalars['String']>;
+  value?: InputMaybe<Scalars['String']>;
+};
+
+
+export type QueryChartFilesArgs = {
+  after?: InputMaybe<Scalars['String']>;
+  before?: InputMaybe<Scalars['String']>;
+  fileStatus?: InputMaybe<Scalars['String']>;
+  fileStatus_Icontains?: InputMaybe<Scalars['String']>;
+  first?: InputMaybe<Scalars['Int']>;
+  last?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  piechart?: InputMaybe<Scalars['String']>;
+  projectName?: InputMaybe<Scalars['String']>;
+  projectName_Icontains?: InputMaybe<Scalars['String']>;
+  value?: InputMaybe<Scalars['String']>;
+};
+
+
+export type QueryDataViewArgs = {
+  after?: InputMaybe<Scalars['String']>;
+  before?: InputMaybe<Scalars['String']>;
+  file?: InputMaybe<Scalars['String']>;
+  first?: InputMaybe<Scalars['Int']>;
+  last?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  project?: InputMaybe<Scalars['String']>;
+};
+
+
+export type QueryDataviewByIdArgs = {
+  after?: InputMaybe<Scalars['String']>;
+  before?: InputMaybe<Scalars['String']>;
+  fileId?: InputMaybe<Scalars['String']>;
+  first?: InputMaybe<Scalars['Int']>;
+  last?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+};
+
+
+export type QueryFieldsArgs = {
+  after?: InputMaybe<Scalars['String']>;
+  before?: InputMaybe<Scalars['String']>;
+  classificationFile?: InputMaybe<Scalars['ID']>;
+  documenttype?: InputMaybe<Scalars['String']>;
+  first?: InputMaybe<Scalars['Int']>;
+  id?: InputMaybe<Scalars['Int']>;
+  last?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+};
+
+
+export type QueryFileArgs = {
+  after?: InputMaybe<Scalars['String']>;
+  before?: InputMaybe<Scalars['String']>;
+  fileStatus?: InputMaybe<Scalars['String']>;
+  fileStatus_Icontains?: InputMaybe<Scalars['String']>;
+  first?: InputMaybe<Scalars['Int']>;
+  foldername?: InputMaybe<Scalars['String']>;
+  last?: InputMaybe<Scalars['Int']>;
+  name?: InputMaybe<Scalars['String']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  projectName?: InputMaybe<Scalars['String']>;
+  projectName_Icontains?: InputMaybe<Scalars['String']>;
+};
+
+
+export type QueryFilesArgs = {
+  after?: InputMaybe<Scalars['String']>;
+  before?: InputMaybe<Scalars['String']>;
+  fileStatus?: InputMaybe<Scalars['String']>;
+  fileStatus_Icontains?: InputMaybe<Scalars['String']>;
+  first?: InputMaybe<Scalars['Int']>;
+  last?: InputMaybe<Scalars['Int']>;
+  name?: InputMaybe<Scalars['String']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  projectName?: InputMaybe<Scalars['String']>;
+  projectName_Icontains?: InputMaybe<Scalars['String']>;
+};
+
+
+export type QueryLockArgs = {
+  after?: InputMaybe<Scalars['String']>;
+  before?: InputMaybe<Scalars['String']>;
+  fileStatus?: InputMaybe<Scalars['String']>;
+  fileStatus_Icontains?: InputMaybe<Scalars['String']>;
+  first?: InputMaybe<Scalars['Int']>;
+  foldername?: InputMaybe<Scalars['String']>;
+  last?: InputMaybe<Scalars['Int']>;
+  name?: InputMaybe<Scalars['String']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  projectName?: InputMaybe<Scalars['String']>;
+  projectName_Icontains?: InputMaybe<Scalars['String']>;
+};
+
+
+export type QueryProjectWithUserArgs = {
+  after?: InputMaybe<Scalars['String']>;
+  before?: InputMaybe<Scalars['String']>;
+  first?: InputMaybe<Scalars['Int']>;
+  last?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  projectName?: InputMaybe<Scalars['String']>;
+  projectName_Icontains?: InputMaybe<Scalars['String']>;
+  search?: InputMaybe<Scalars['String']>;
+};
+
+
+export type QueryProjectsArgs = {
+  active?: InputMaybe<Scalars['Boolean']>;
+  active_Icontains?: InputMaybe<Scalars['Boolean']>;
+  after?: InputMaybe<Scalars['String']>;
+  before?: InputMaybe<Scalars['String']>;
+  first?: InputMaybe<Scalars['Int']>;
+  last?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  orderBy?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  projectName?: InputMaybe<Scalars['String']>;
+  projectName_Icontains?: InputMaybe<Scalars['String']>;
+  search?: InputMaybe<Scalars['String']>;
+  skip?: InputMaybe<Scalars['Int']>;
+};
+
+
+export type QueryReviewUserArgs = {
+  after?: InputMaybe<Scalars['String']>;
+  before?: InputMaybe<Scalars['String']>;
+  first?: InputMaybe<Scalars['Int']>;
+  last?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  position?: InputMaybe<Scalars['String']>;
+  role?: InputMaybe<Scalars['String']>;
+  role_Icontains?: InputMaybe<Scalars['String']>;
+};
+
+
+export type QueryUserDataviewDetailArgs = {
+  after?: InputMaybe<Scalars['String']>;
+  before?: InputMaybe<Scalars['String']>;
+  first?: InputMaybe<Scalars['Int']>;
+  last?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  projects: Array<InputMaybe<ProjectsInput>>;
+};
+
+
+export type QueryUserWithProjectArgs = {
+  after?: InputMaybe<Scalars['String']>;
+  before?: InputMaybe<Scalars['String']>;
+  email?: InputMaybe<Scalars['String']>;
+  email_Icontains?: InputMaybe<Scalars['String']>;
+  first?: InputMaybe<Scalars['Int']>;
+  last?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  search?: InputMaybe<Scalars['String']>;
+};
+
+/**
+ * Sends activation email.
+ *
+ * It is called resend because theoretically
+ * the first activation email was sent when
+ * the user registered.
+ *
+ * If there is no user with the requested email,
+ * a successful response is returned.
+ */
+export type ResendActivationEmail = {
+  __typename?: 'ResendActivationEmail';
+  errors?: Maybe<Scalars['ExpectedErrorType']>;
+  success?: Maybe<Scalars['Boolean']>;
+};
+
+/**
+ * Send password reset email.
+ *
+ * For non verified users, send an activation
+ * email instead.
+ *
+ * Accepts both primary and secondary email.
+ *
+ * If there is no user with the requested email,
+ * a successful response is returned.
+ */
+export type SendPasswordResetEmail = {
+  __typename?: 'SendPasswordResetEmail';
+  errors?: Maybe<Scalars['ExpectedErrorType']>;
+  success?: Maybe<Scalars['Boolean']>;
+};
+
+export type StatusInput = {
+  status: Scalars['String'];
+};
+
+export type UnlockFileMutation = {
+  __typename?: 'UnlockFileMutation';
+  files?: Maybe<ProjectFileType>;
+};
+
+/**
+ * Update user model fields, defined on settings.
+ *
+ * User must be verified.
+ */
+export type UpdateAccount = {
+  __typename?: 'UpdateAccount';
+  errors?: Maybe<Scalars['ExpectedErrorType']>;
+  success?: Maybe<Scalars['Boolean']>;
+};
+
+export type UpdateProjectUserInput = {
+  active?: InputMaybe<Scalars['Boolean']>;
+  assignUser: Array<InputMaybe<UserInput>>;
+  classificationFileId?: InputMaybe<Scalars['Int']>;
+  description?: InputMaybe<Scalars['String']>;
+  projectName: Scalars['String'];
+};
+
+export type UpdateProjects = {
+  __typename?: 'UpdateProjects';
+  projects?: Maybe<ProjectsType>;
+};
+
+export type UpdateUser = {
+  __typename?: 'UpdateUser';
+  users?: Maybe<UserType>;
+};
+
+export type UpdateUserProjectInput = {
+  active?: InputMaybe<Scalars['Boolean']>;
+  assignProject: Array<InputMaybe<ProjectsInput>>;
+  email: Scalars['String'];
+  firstname?: InputMaybe<Scalars['String']>;
+  lastname?: InputMaybe<Scalars['String']>;
+  username?: InputMaybe<Scalars['String']>;
+};
+
+export type UserInput = {
+  userEmail: Scalars['String'];
+};
+
+export type UserNode = Node & {
+  __typename?: 'UserNode';
+  archived?: Maybe<Scalars['Boolean']>;
+  dateJoined: Scalars['DateTime'];
+  email: Scalars['String'];
+  firstName: Scalars['String'];
+  /** The ID of the object. */
+  id: Scalars['ID'];
+  /** Designates whether this user should be treated as active. Unselect this instead of deleting accounts. */
+  isActive: Scalars['Boolean'];
+  /** Designates whether the user can log into this admin site. */
+  isStaff: Scalars['Boolean'];
+  lastLogin?: Maybe<Scalars['DateTime']>;
+  lastName: Scalars['String'];
+  modifiedAt: Scalars['DateTime'];
+  pk?: Maybe<Scalars['Int']>;
+  projectfile: ProjectFileTypeConnection;
+  projects: ProjectWithUserTypeConnection;
+  role: Scalars['String'];
+  secondaryEmail?: Maybe<Scalars['String']>;
+  /** Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only. */
+  username: Scalars['String'];
+  userprojects: UserProjectTypeConnection;
+  verified?: Maybe<Scalars['Boolean']>;
+};
+
+
+export type UserNodeProjectfileArgs = {
+  after?: InputMaybe<Scalars['String']>;
+  before?: InputMaybe<Scalars['String']>;
+  fileStatus?: InputMaybe<Scalars['String']>;
+  fileStatus_Icontains?: InputMaybe<Scalars['String']>;
+  first?: InputMaybe<Scalars['Int']>;
+  last?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  projectName?: InputMaybe<Scalars['String']>;
+  projectName_Icontains?: InputMaybe<Scalars['String']>;
+};
+
+
+export type UserNodeProjectsArgs = {
+  after?: InputMaybe<Scalars['String']>;
+  before?: InputMaybe<Scalars['String']>;
+  first?: InputMaybe<Scalars['Int']>;
+  last?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  projectName?: InputMaybe<Scalars['String']>;
+  projectName_Icontains?: InputMaybe<Scalars['String']>;
+};
+
+
+export type UserNodeUserprojectsArgs = {
+  after?: InputMaybe<Scalars['String']>;
+  before?: InputMaybe<Scalars['String']>;
+  first?: InputMaybe<Scalars['Int']>;
+  last?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+};
+
+export type UserProjectType = Node & {
+  __typename?: 'UserProjectType';
+  /** The ID of the object. */
+  id: Scalars['ID'];
+  project: ProjectWithUserType;
+  user?: Maybe<UserWithProjectType>;
+};
+
+export type UserProjectTypeConnection = {
+  __typename?: 'UserProjectTypeConnection';
+  /** Contains the nodes in this connection. */
+  edges: Array<Maybe<UserProjectTypeEdge>>;
+  /** Pagination data for this connection. */
+  pageInfo: PageInfo;
+};
+
+/** A Relay edge containing a `UserProjectType` and its cursor. */
+export type UserProjectTypeEdge = {
+  __typename?: 'UserProjectTypeEdge';
+  /** A cursor for use in pagination */
+  cursor: Scalars['String'];
+  /** The item at the end of the edge */
+  node?: Maybe<UserProjectType>;
+};
+
+export type UserType = Node & {
+  __typename?: 'UserType';
+  dateJoined: Scalars['DateTime'];
+  email: Scalars['String'];
+  firstName: Scalars['String'];
+  /** The ID of the object. */
+  id: Scalars['ID'];
+  /** Designates whether this user should be treated as active. Unselect this instead of deleting accounts. */
+  isActive: Scalars['Boolean'];
+  /** Designates whether the user can log into this admin site. */
+  isStaff: Scalars['Boolean'];
+  /** Designates that this user has all permissions without explicitly assigning them. */
+  isSuperuser: Scalars['Boolean'];
+  lastLogin?: Maybe<Scalars['DateTime']>;
+  lastName: Scalars['String'];
+  modifiedAt: Scalars['DateTime'];
+  password: Scalars['String'];
+  projectfile: ProjectFileTypeConnection;
+  projects: ProjectWithUserTypeConnection;
+  role: Scalars['String'];
+  /** Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only. */
+  username: Scalars['String'];
+  userprojects: UserProjectTypeConnection;
+};
+
+
+export type UserTypeProjectfileArgs = {
+  after?: InputMaybe<Scalars['String']>;
+  before?: InputMaybe<Scalars['String']>;
+  fileStatus?: InputMaybe<Scalars['String']>;
+  fileStatus_Icontains?: InputMaybe<Scalars['String']>;
+  first?: InputMaybe<Scalars['Int']>;
+  last?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  projectName?: InputMaybe<Scalars['String']>;
+  projectName_Icontains?: InputMaybe<Scalars['String']>;
+};
+
+
+export type UserTypeProjectsArgs = {
+  after?: InputMaybe<Scalars['String']>;
+  before?: InputMaybe<Scalars['String']>;
+  first?: InputMaybe<Scalars['Int']>;
+  last?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  projectName?: InputMaybe<Scalars['String']>;
+  projectName_Icontains?: InputMaybe<Scalars['String']>;
+};
+
+
+export type UserTypeUserprojectsArgs = {
+  after?: InputMaybe<Scalars['String']>;
+  before?: InputMaybe<Scalars['String']>;
+  first?: InputMaybe<Scalars['Int']>;
+  last?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+};
+
+export type UserTypeConnection = {
+  __typename?: 'UserTypeConnection';
+  /** Contains the nodes in this connection. */
+  edges: Array<Maybe<UserTypeEdge>>;
+  /** Pagination data for this connection. */
+  pageInfo: PageInfo;
+};
+
+/** A Relay edge containing a `UserType` and its cursor. */
+export type UserTypeEdge = {
+  __typename?: 'UserTypeEdge';
+  /** A cursor for use in pagination */
+  cursor: Scalars['String'];
+  /** The item at the end of the edge */
+  node?: Maybe<UserType>;
+};
+
+export type UserWithProjectType = Node & {
+  __typename?: 'UserWithProjectType';
+  dateJoined: Scalars['DateTime'];
+  email: Scalars['String'];
+  firstName: Scalars['String'];
+  /** The ID of the object. */
+  id: Scalars['ID'];
+  /** Designates whether this user should be treated as active. Unselect this instead of deleting accounts. */
+  isActive: Scalars['Boolean'];
+  /** Designates whether the user can log into this admin site. */
+  isStaff: Scalars['Boolean'];
+  /** Designates that this user has all permissions without explicitly assigning them. */
+  isSuperuser: Scalars['Boolean'];
+  lastLogin?: Maybe<Scalars['DateTime']>;
+  lastName: Scalars['String'];
+  modifiedAt: Scalars['DateTime'];
+  password: Scalars['String'];
+  projectfile: ProjectFileTypeConnection;
+  projects?: Maybe<Array<Maybe<ProjectsType>>>;
+  role: Scalars['String'];
+  /** Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only. */
+  username: Scalars['String'];
+  userprojects: UserProjectTypeConnection;
+};
+
+
+export type UserWithProjectTypeProjectfileArgs = {
+  after?: InputMaybe<Scalars['String']>;
+  before?: InputMaybe<Scalars['String']>;
+  fileStatus?: InputMaybe<Scalars['String']>;
+  fileStatus_Icontains?: InputMaybe<Scalars['String']>;
+  first?: InputMaybe<Scalars['Int']>;
+  last?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  projectName?: InputMaybe<Scalars['String']>;
+  projectName_Icontains?: InputMaybe<Scalars['String']>;
+};
+
+
+export type UserWithProjectTypeUserprojectsArgs = {
+  after?: InputMaybe<Scalars['String']>;
+  before?: InputMaybe<Scalars['String']>;
+  first?: InputMaybe<Scalars['Int']>;
+  last?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+};
+
+export type UserWithProjectTypeConnection = {
+  __typename?: 'UserWithProjectTypeConnection';
+  /** Contains the nodes in this connection. */
+  edges: Array<Maybe<UserWithProjectTypeEdge>>;
+  /** Pagination data for this connection. */
+  pageInfo: PageInfo;
+};
+
+/** A Relay edge containing a `UserWithProjectType` and its cursor. */
+export type UserWithProjectTypeEdge = {
+  __typename?: 'UserWithProjectTypeEdge';
+  /** A cursor for use in pagination */
+  cursor: Scalars['String'];
+  /** The item at the end of the edge */
+  node?: Maybe<UserWithProjectType>;
+};
+
+export type UsersInput = {
+  active?: InputMaybe<Scalars['Boolean']>;
+  assignProject: Array<InputMaybe<ProjectsInput>>;
+  email?: InputMaybe<Scalars['String']>;
+  firstname?: InputMaybe<Scalars['String']>;
+  lastname?: InputMaybe<Scalars['String']>;
+  password?: InputMaybe<Scalars['String']>;
+  role?: InputMaybe<Scalars['String']>;
+  username?: InputMaybe<Scalars['String']>;
+};
+
+/**
+ * Verify user account.
+ *
+ * Receive the token that was sent by email.
+ * If the token is valid, make the user verified
+ * by making the `user.status.verified` field true.
+ */
+export type VerifyAccount = {
+  __typename?: 'VerifyAccount';
+  errors?: Maybe<Scalars['ExpectedErrorType']>;
+  success?: Maybe<Scalars['Boolean']>;
+};
+
+export type WorksheetType = Node & {
+  __typename?: 'WorksheetType';
+  classificationFile: ClassificationFileType;
+  classificationName: Scalars['String'];
+  createdAt: Scalars['DateTime'];
+  fieldId: Scalars['String'];
+  fieldName: Scalars['String'];
+  /** The ID of the object. */
+  id: Scalars['ID'];
+  jsonFieldname?: Maybe<Scalars['String']>;
+  updatedAt: Scalars['DateTime'];
+};
+
+export type WorksheetTypeConnection = {
+  __typename?: 'WorksheetTypeConnection';
+  /** Contains the nodes in this connection. */
+  edges: Array<Maybe<WorksheetTypeEdge>>;
+  /** Pagination data for this connection. */
+  pageInfo: PageInfo;
+};
+
+/** A Relay edge containing a `WorksheetType` and its cursor. */
+export type WorksheetTypeEdge = {
+  __typename?: 'WorksheetTypeEdge';
+  /** A cursor for use in pagination */
+  cursor: Scalars['String'];
+  /** The item at the end of the edge */
+  node?: Maybe<WorksheetType>;
+};

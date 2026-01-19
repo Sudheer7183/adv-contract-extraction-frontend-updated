@@ -1,0 +1,93 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+import React, { FC, useContext, useState, useEffect, useMemo } from 'react'
+import { useQuery } from '@tanstack/react-query'
+import {
+  createResponseContext,
+  initialQueryResponse,
+  initialQueryState,
+  PaginationState,
+  QUERIES,
+  stringifyRequestQuery,
+  WithChildren,
+} from '../../../../../../../_metronic/helpers'
+import { getUsers } from './_requests'
+import { User } from './_models'
+import { useQueryRequest } from './QueryRequestProvider1'
+
+const QueryResponseContext = createResponseContext<User>(initialQueryResponse)
+console.log("initialQueryResponse->", initialQueryResponse);
+
+const QueryResponseProvider1: FC<WithChildren> = ({ children }) => {
+  const { state } = useQueryRequest()
+  const [query, setQuery] = useState<string>(stringifyRequestQuery(state))
+  const updatedQuery = useMemo(() => stringifyRequestQuery(state), [state])
+
+  useEffect(() => {
+    if (query !== updatedQuery) {
+      setQuery(updatedQuery)
+    }
+  }, [updatedQuery])
+
+  const {
+  isFetching,
+  refetch,
+  data: response,
+} = useQuery({
+  queryKey: [`${QUERIES.USERS_LIST}-${query}`],
+  queryFn: () => getUsers(query),
+  gcTime: 0,
+  placeholderData: (previousData) => previousData,
+  refetchOnWindowFocus: false,
+})
+
+
+  return (
+    <QueryResponseContext.Provider value={{ isLoading: isFetching, refetch, response, query }}>
+      {children}
+    </QueryResponseContext.Provider>
+  )
+}
+
+const useQueryResponse = () => useContext(QueryResponseContext)
+
+const useQueryResponseData = () => {
+  const { response } = useQueryResponse()
+  console.log("response1->", response);
+
+  if (!response) {
+    return []
+  }
+
+  return response?.data || []
+}
+
+const useQueryResponsePagination = () => {
+  const defaultPaginationState: PaginationState = {
+    links: [],
+    ...initialQueryState,
+  }
+
+  const { response } = useQueryResponse()
+  console.log("response->", response);
+
+  if (!response || !response.payload || !response.payload.pagination) {
+    return defaultPaginationState
+  }
+
+  return response.payload.pagination
+}
+
+const useQueryResponseLoading = (): boolean => {
+  const { isLoading } = useQueryResponse()
+  return isLoading
+}
+
+export {
+  QueryResponseProvider1,
+  useQueryResponse,
+  useQueryResponseData,
+  useQueryResponsePagination,
+  useQueryResponseLoading,
+}
+
+

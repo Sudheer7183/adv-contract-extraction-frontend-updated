@@ -1,0 +1,86 @@
+@import '../../../styles/modern-theme.scss';
+
+.modern-card {
+  background: $modern-card-bg;
+  border-radius: $modern-card-radius;
+  border: 1px solid $modern-card-border;
+  box-shadow: $modern-card-shadow;
+  transition: all $modern-transition-base;
+  overflow: hidden;
+}
+
+.modern-card-padding-sm {
+  padding: $modern-spacing-4;
+}
+
+.modern-card-padding-md {
+  padding: $modern-spacing-6;
+}
+
+.modern-card-padding-lg {
+  padding: $modern-spacing-8;
+}
+
+.modern-card-shadow-sm {
+  box-shadow: $modern-shadow-sm;
+}
+
+.modern-card-shadow-md {
+  box-shadow: $modern-shadow-md;
+}
+
+.modern-card-shadow-lg {
+  box-shadow: $modern-shadow-lg;
+}
+
+.modern-card-shadow-xl {
+  box-shadow: $modern-shadow-xl;
+}
+
+.modern-card-hover {
+  cursor: pointer;
+
+  &:hover {
+    box-shadow: $modern-shadow-lg;
+    transform: translateY(-2px);
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
+}
+
+.modern-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: $modern-spacing-6;
+  padding-bottom: $modern-spacing-4;
+  border-bottom: 1px solid $modern-gray-200;
+}
+
+.modern-card-header-content {
+  flex: 1;
+}
+
+.modern-card-title {
+  font-size: $modern-fs-xl;
+  font-weight: $modern-fw-bold;
+  color: $modern-gray-900;
+  margin: 0;
+  line-height: 1.3;
+}
+
+.modern-card-subtitle {
+  font-size: $modern-fs-sm;
+  color: $modern-gray-500;
+  margin: $modern-spacing-2 0 0 0;
+}
+
+.modern-card-header-action {
+  margin-left: $modern-spacing-4;
+}
+
+.modern-card-body {
+  // Body styles inherited from parent padding
+}

@@ -1,0 +1,684 @@
+// ============================================
+// MODERN STYLE OVERRIDES
+// Applies modern styling to existing Metronic components
+// ============================================
+
+@import './modern-theme.scss';
+
+// ============================================
+// GLOBAL LAYOUT
+// ============================================
+
+body {
+  font-family: $modern-font-primary;
+  background: $modern-gray-50;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.page {
+  background: $modern-gray-50;
+}
+
+// ============================================
+// HEADER
+// ============================================
+
+.header {
+  background: #FFFFFF !important;
+  border-bottom: 1px solid $modern-gray-200 !important;
+  box-shadow: $modern-shadow-sm !important;
+  height: $modern-header-height !important;
+}
+
+.header-brand {
+  background: #FFFFFF !important;
+  border-right: 1px solid $modern-gray-200 !important;
+}
+
+// ============================================
+// SIDEBAR
+// ============================================
+
+.aside {
+  background: #FFFFFF !important;
+  border-right: 1px solid $modern-gray-200 !important;
+  box-shadow: $modern-shadow-sm !important;
+  width: $modern-sidebar-width !important;
+
+  &::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: $modern-gray-300;
+    border-radius: $modern-radius-full;
+
+    &:hover {
+      background: $modern-gray-400;
+    }
+  }
+}
+
+.aside-menu {
+  padding: $modern-spacing-4 $modern-spacing-2;
+
+  .menu {
+    .menu-item {
+      margin-bottom: $modern-spacing-1;
+
+      .menu-link {
+        padding: $modern-spacing-3 $modern-spacing-4 !important;
+        border-radius: $modern-radius-md !important;
+        color: $modern-sidebar-text !important;
+        font-size: $modern-fs-sm !important;
+        font-weight: $modern-fw-medium !important;
+        transition: all $modern-transition-base !important;
+
+        &:hover {
+          background: $modern-sidebar-item-hover !important;
+          color: $modern-primary !important;
+        }
+
+        .menu-icon {
+          color: inherit !important;
+
+          i, svg {
+            color: inherit !important;
+          }
+        }
+
+        .menu-title {
+          font-weight: $modern-fw-medium !important;
+          color: inherit !important;
+        }
+
+        .menu-arrow {
+          transition: transform $modern-transition-base !important;
+          color: $modern-gray-400 !important;
+        }
+      }
+
+      &.here,
+      &.show {
+        > .menu-link {
+          background: $modern-sidebar-item-active !important;
+          color: $modern-sidebar-text-active !important;
+          font-weight: $modern-fw-semibold !important;
+
+          .menu-icon {
+            color: $modern-primary !important;
+
+            i, svg {
+              color: $modern-primary !important;
+            }
+          }
+        }
+      }
+    }
+
+    .menu-section {
+      padding: $modern-spacing-4 $modern-spacing-4 $modern-spacing-2 !important;
+      font-size: $modern-fs-xs !important;
+      font-weight: $modern-fw-bold !important;
+      color: $modern-gray-500 !important;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+  }
+}
+
+// ============================================
+// SIDEBAR MINIMIZE STATE
+// ============================================
+
+body[data-kt-aside-minimize='on'] {
+  .aside {
+    width: $modern-sidebar-collapsed !important;
+
+    .aside-menu {
+      .menu {
+        .menu-item {
+          .menu-link {
+            padding: $modern-spacing-3 !important;
+            justify-content: center;
+            display: flex !important;
+            align-items: center !important;
+
+            .menu-title,
+            .menu-arrow {
+              display: none !important;
+            }
+
+            .menu-icon {
+              margin: 0 !important;
+              display: flex !important;
+              align-items: center !important;
+              justify-content: center !important;
+              width: 24px !important;
+              height: 24px !important;
+              font-size: 1.5rem !important;
+
+              i, svg {
+                display: block !important;
+                font-size: 1.5rem !important;
+                width: 24px !important;
+                height: 24px !important;
+              }
+
+              .svg-icon {
+                display: block !important;
+                width: 24px !important;
+                height: 24px !important;
+              }
+            }
+          }
+
+          &.here,
+          &.show {
+            > .menu-link {
+              position: relative;
+
+              &::after {
+                content: '';
+                position: absolute;
+                left: 0;
+                top: 50%;
+                transform: translateY(-50%);
+                width: 4px;
+                height: 70%;
+                background: $modern-primary;
+                border-radius: 0 $modern-radius-sm $modern-radius-sm 0;
+              }
+            }
+          }
+
+          .menu-sub {
+            display: none !important;
+          }
+        }
+
+        .menu-section {
+          display: none !important;
+        }
+      }
+    }
+  }
+
+  .header-brand {
+    width: $modern-sidebar-collapsed !important;
+    min-width: $modern-sidebar-collapsed !important;
+  }
+
+  .wrapper {
+    margin-left: $modern-sidebar-collapsed !important;
+  }
+}
+
+// ============================================
+// CONTENT AREA
+// ============================================
+
+.wrapper {
+  background: $modern-gray-50;
+}
+
+.content {
+  background: transparent;
+  padding: $modern-spacing-6 !important;
+}
+
+.post {
+  max-width: $modern-max-content-width;
+  margin: 0 auto;
+  width: 100%;
+}
+
+// ============================================
+// CARDS
+// ============================================
+
+.card {
+  background: #FFFFFF;
+  border-radius: $modern-card-radius !important;
+  border: 1px solid $modern-card-border !important;
+  box-shadow: $modern-card-shadow !important;
+  transition: all $modern-transition-base !important;
+  margin-bottom: $modern-spacing-6 !important;
+
+  &:hover {
+    box-shadow: $modern-shadow-md !important;
+  }
+
+  .card-header {
+    padding: $modern-spacing-6 !important;
+    border-bottom: 1px solid $modern-gray-200 !important;
+    background: transparent !important;
+
+    .card-title {
+      font-size: $modern-fs-xl !important;
+      font-weight: $modern-fw-bold !important;
+      color: $modern-gray-900 !important;
+      margin: 0 !important;
+    }
+  }
+
+  .card-body {
+    padding: $modern-spacing-6 !important;
+  }
+
+  .card-footer {
+    padding: $modern-spacing-6 !important;
+    border-top: 1px solid $modern-gray-200 !important;
+    background: transparent !important;
+  }
+}
+
+// ============================================
+// BUTTONS
+// ============================================
+
+.btn {
+  border-radius: $modern-btn-radius !important;
+  font-weight: $modern-fw-semibold !important;
+  font-size: $modern-fs-sm !important;
+  padding: $modern-btn-padding-y $modern-btn-padding-x !important;
+  transition: all $modern-transition-base !important;
+  font-family: $modern-font-primary;
+
+  &:not(:disabled):hover {
+    transform: translateY(-1px);
+  }
+
+  &:not(:disabled):active {
+    transform: translateY(0);
+  }
+}
+
+.btn-primary {
+  background: $modern-primary !important;
+  border-color: $modern-primary !important;
+  color: #FFFFFF !important;
+
+  &:hover {
+    background: $modern-primary-dark !important;
+    border-color: $modern-primary-dark !important;
+  }
+
+  &:focus {
+    box-shadow: 0 0 0 3px rgba(0, 102, 255, 0.2) !important;
+  }
+}
+
+.btn-secondary {
+  background: $modern-gray-100 !important;
+  border-color: $modern-gray-300 !important;
+  color: $modern-gray-700 !important;
+
+  &:hover {
+    background: $modern-gray-200 !important;
+    border-color: $modern-gray-400 !important;
+  }
+}
+
+.btn-success {
+  background: $modern-success !important;
+  border-color: $modern-success !important;
+
+  &:hover {
+    background: $modern-success-dark !important;
+    border-color: $modern-success-dark !important;
+  }
+}
+
+.btn-danger {
+  background: $modern-error !important;
+  border-color: $modern-error !important;
+
+  &:hover {
+    background: $modern-error-dark !important;
+    border-color: $modern-error-dark !important;
+  }
+}
+
+.btn-warning {
+  background: $modern-warning !important;
+  border-color: $modern-warning !important;
+
+  &:hover {
+    background: $modern-warning-dark !important;
+    border-color: $modern-warning-dark !important;
+  }
+}
+
+.btn-light {
+  background: #FFFFFF !important;
+  border-color: $modern-gray-300 !important;
+  color: $modern-gray-700 !important;
+
+  &:hover {
+    background: $modern-gray-50 !important;
+    border-color: $modern-gray-400 !important;
+  }
+}
+
+// ============================================
+// FORMS
+// ============================================
+
+.form-control,
+.form-select {
+  border-radius: $modern-input-radius !important;
+  border-color: $modern-input-border !important;
+  font-size: $modern-input-font-size !important;
+  padding: $modern-input-padding-y $modern-input-padding-x !important;
+  transition: all $modern-transition-base !important;
+  font-family: $modern-font-primary;
+  color: $modern-gray-900 !important;
+
+  &:focus {
+    border-color: $modern-input-border-focus !important;
+    box-shadow: 0 0 0 3px rgba(0, 102, 255, 0.1) !important;
+  }
+
+  &::placeholder {
+    color: $modern-gray-400 !important;
+  }
+}
+
+.form-label {
+  font-size: $modern-fs-sm !important;
+  font-weight: $modern-fw-medium !important;
+  color: $modern-gray-700 !important;
+  margin-bottom: $modern-spacing-2 !important;
+}
+
+// ============================================
+// TABLES
+// ============================================
+
+.table {
+  font-size: $modern-fs-sm !important;
+  font-family: $modern-font-primary;
+
+  thead {
+    background: $modern-table-header-bg !important;
+
+    th {
+      background: $modern-table-header-bg !important;
+      font-weight: $modern-fw-semibold !important;
+      color: $modern-gray-700 !important;
+      border-bottom: 2px solid $modern-table-border !important;
+      padding: $modern-table-cell-padding !important;
+      white-space: nowrap;
+    }
+  }
+
+  tbody {
+    td {
+      padding: $modern-table-cell-padding !important;
+      border-bottom: 1px solid $modern-table-border !important;
+      color: $modern-gray-800 !important;
+    }
+
+    tr {
+      transition: background-color $modern-transition-base !important;
+
+      &:hover {
+        background: $modern-table-hover-bg !important;
+      }
+    }
+  }
+}
+
+.table-striped {
+  tbody {
+    tr:nth-of-type(even) {
+      background: $modern-table-stripe-bg !important;
+
+      &:hover {
+        background: $modern-table-hover-bg !important;
+      }
+    }
+  }
+}
+
+// ============================================
+// MODALS
+// ============================================
+
+.modal-content {
+  border-radius: $modern-radius-xl !important;
+  border: none !important;
+  box-shadow: $modern-shadow-2xl !important;
+}
+
+.modal-header {
+  padding: $modern-spacing-6 !important;
+  border-bottom: 1px solid $modern-gray-200 !important;
+
+  .modal-title {
+    font-size: $modern-fs-xl !important;
+    font-weight: $modern-fw-bold !important;
+    color: $modern-gray-900 !important;
+  }
+
+  .btn-close {
+    &:focus {
+      box-shadow: none !important;
+    }
+  }
+}
+
+.modal-body {
+  padding: $modern-spacing-6 !important;
+}
+
+.modal-footer {
+  padding: $modern-spacing-6 !important;
+  border-top: 1px solid $modern-gray-200 !important;
+}
+
+// ============================================
+// BADGES & PILLS
+// ============================================
+
+.badge {
+  padding: 0.25rem 0.75rem !important;
+  border-radius: $modern-radius-full !important;
+  font-weight: $modern-fw-semibold !important;
+  font-size: $modern-fs-xs !important;
+}
+
+// ============================================
+// DROPDOWNS
+// ============================================
+
+.dropdown-menu {
+  border-radius: $modern-radius-lg !important;
+  border: 1px solid $modern-gray-200 !important;
+  box-shadow: $modern-shadow-lg !important;
+  padding: $modern-spacing-2 !important;
+
+  .dropdown-item {
+    border-radius: $modern-radius-md !important;
+    padding: $modern-spacing-2 $modern-spacing-4 !important;
+    font-size: $modern-fs-sm !important;
+    transition: all $modern-transition-base !important;
+
+    &:hover {
+      background: $modern-gray-100 !important;
+      color: $modern-primary !important;
+    }
+
+    &:active {
+      background: $modern-primary-lighter !important;
+      color: $modern-primary !important;
+    }
+  }
+
+  .dropdown-divider {
+    border-color: $modern-gray-200 !important;
+  }
+}
+
+// ============================================
+// PAGINATION
+// ============================================
+
+.pagination {
+  .page-link {
+    border-radius: $modern-radius-md !important;
+    border-color: $modern-gray-300 !important;
+    color: $modern-gray-700 !important;
+    padding: $modern-spacing-2 $modern-spacing-4 !important;
+    margin: 0 $modern-spacing-1 !important;
+    transition: all $modern-transition-base !important;
+
+    &:hover {
+      background: $modern-gray-100 !important;
+      border-color: $modern-gray-400 !important;
+    }
+
+    &:focus {
+      box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.05) !important;
+    }
+  }
+
+  .page-item {
+    &.active .page-link {
+      background: $modern-primary !important;
+      border-color: $modern-primary !important;
+      color: #FFFFFF !important;
+    }
+
+    &.disabled .page-link {
+      opacity: 0.5;
+    }
+  }
+}
+
+// ============================================
+// ALERTS
+// ============================================
+
+.alert {
+  border-radius: $modern-radius-lg !important;
+  border: none !important;
+  padding: $modern-spacing-4 !important;
+  font-size: $modern-fs-sm !important;
+}
+
+.alert-primary {
+  background: $modern-primary-lighter !important;
+  color: $modern-primary-dark !important;
+}
+
+.alert-success {
+  background: $modern-success-bg !important;
+  color: $modern-success-dark !important;
+}
+
+.alert-warning {
+  background: $modern-warning-bg !important;
+  color: $modern-warning-dark !important;
+}
+
+.alert-danger {
+  background: $modern-error-bg !important;
+  color: $modern-error-dark !important;
+}
+
+.alert-info {
+  background: $modern-info-bg !important;
+  color: $modern-info-dark !important;
+}
+
+// ============================================
+// RESPONSIVE
+// ============================================
+
+@media (max-width: 991px) {
+  .content {
+    padding: $modern-spacing-4 !important;
+  }
+
+  .card {
+    .card-header,
+    .card-body,
+    .card-footer {
+      padding: $modern-spacing-4 !important;
+    }
+  }
+}
+
+@media (max-width: 576px) {
+  .content {
+    padding: $modern-spacing-3 !important;
+  }
+
+  .card {
+    .card-header,
+    .card-body,
+    .card-footer {
+      padding: $modern-spacing-3 !important;
+    }
+  }
+}
+
+// ============================================
+// TYPOGRAPHY
+// ============================================
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: $modern-font-heading;
+  font-weight: $modern-fw-bold;
+  color: $modern-gray-900;
+}
+
+h1 { font-size: $modern-fs-4xl !important; }
+h2 { font-size: $modern-fs-3xl !important; }
+h3 { font-size: $modern-fs-2xl !important; }
+h4 { font-size: $modern-fs-xl !important; }
+h5 { font-size: $modern-fs-lg !important; }
+h6 { font-size: $modern-fs-md !important; }
+
+p {
+  font-family: $modern-font-primary;
+  color: $modern-gray-700;
+}
+
+a {
+  color: $modern-primary;
+  transition: color $modern-transition-base;
+
+  &:hover {
+    color: $modern-primary-dark;
+  }
+}
+
+// ============================================
+// SCROLLBARS (Chrome, Safari, Edge)
+// ============================================
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: $modern-gray-100;
+}
+
+::-webkit-scrollbar-thumb {
+  background: $modern-gray-300;
+  border-radius: $modern-radius-full;
+
+  &:hover {
+    background: $modern-gray-400;
+  }
+}
