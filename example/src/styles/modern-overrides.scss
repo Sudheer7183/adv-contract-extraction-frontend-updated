@@ -175,6 +175,28 @@ body {
 }
 
 // ============================================
+// VIEWER PAGE - COMPLETELY HIDE SIDEBAR
+// ============================================
+
+body[data-viewer-page='active'] {
+  .aside {
+    width: 0 !important;
+    min-width: 0 !important;
+    border: none !important;
+    overflow: hidden !important;
+  }
+
+  .wrapper {
+    margin-left: 0 !important;
+  }
+
+  .header-brand {
+    width: $modern-sidebar-width !important;
+    min-width: $modern-sidebar-width !important;
+  }
+}
+
+// ============================================
 // SIDEBAR MINIMIZE STATE
 // ============================================
 

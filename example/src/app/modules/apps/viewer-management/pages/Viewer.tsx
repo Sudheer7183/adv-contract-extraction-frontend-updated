@@ -207,8 +207,15 @@ function Viewer() {
     useEffect(() => {
         if (!aside.minimized) {
             document.body.setAttribute('data-kt-aside-minimize', 'on')
+            document.body.setAttribute('data-viewer-page', 'active')
             setViewerPageActive(true)
 
+        }
+
+        // Cleanup: remove viewer page attribute when component unmounts
+        return () => {
+            document.body.removeAttribute('data-viewer-page')
+            setViewerPageActive(false)
         }
         request(`${BASEURL}graphql/`, viewerFile, { id: id }, {Authorization: `Bearer ${localStorage.getItem('Token')}`}).then((res: any) => {
             setData(res.viewerFile)
