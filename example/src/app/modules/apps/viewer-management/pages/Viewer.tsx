@@ -474,13 +474,14 @@ function Viewer() {
                 scrollToView={scrollToHighlightFromHash}
                 readOnly={readMode}
             />
-            <div style={{ display: "flex", height: "75.5vh", paddingTop: '68px' }}>
+            <div style={{ display: "flex", height: "75.5vh", paddingTop: '68px', width: '100%' }}>
                 <div
                     style={{
                         // height: "88vh",
-                        width: "75vw",
+                        flex: "1",
                         position: "relative",
                         zIndex: '99',
+                        overflow: 'hidden'
                     }}
                 >
                     <PdfLoader url={url} beforeLoad={<Spinner />}>

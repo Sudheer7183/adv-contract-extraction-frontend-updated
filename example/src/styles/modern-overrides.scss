@@ -175,24 +175,32 @@ body {
 }
 
 // ============================================
-// VIEWER PAGE - COMPLETELY HIDE SIDEBAR
+// VIEWER PAGE - KEEP SIDEBAR COLLAPSED WITH ICONS
 // ============================================
 
 body[data-viewer-page='active'] {
   .aside {
-    width: 0 !important;
-    min-width: 0 !important;
-    border: none !important;
-    overflow: hidden !important;
+    width: $modern-sidebar-collapsed !important;
   }
 
   .wrapper {
-    margin-left: 0 !important;
+    margin-left: $modern-sidebar-collapsed !important;
+    max-width: 100% !important;
   }
 
   .header-brand {
     width: $modern-sidebar-width !important;
     min-width: $modern-sidebar-width !important;
+  }
+
+  // Ensure content area uses full available width
+  .content {
+    padding: 0 !important;
+    max-width: 100% !important;
+  }
+
+  .post {
+    max-width: 100% !important;
   }
 }
 
