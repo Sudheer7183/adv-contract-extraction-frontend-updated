@@ -208,7 +208,19 @@ body[data-kt-aside-minimize='on'] {
       }
     }
   }
-
+// VIEWER PAGE - KEEP SIDEBAR COLLAPSED WITH ICONS
+// ============================================
+ 
+body[data-viewer-page='active'] {
+  .aside {
+    width: $modern-sidebar-collapsed !important;
+  }
+ 
+  .wrapper {
+    margin-left: $modern-sidebar-collapsed !important;
+    min-width: $modern-sidebar-width !important;
+  }
+}
   .header-brand {
     width: $modern-sidebar-collapsed !important;
     min-width: $modern-sidebar-collapsed !important;

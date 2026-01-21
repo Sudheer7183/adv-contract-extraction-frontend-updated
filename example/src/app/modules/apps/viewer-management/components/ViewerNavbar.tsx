@@ -236,7 +236,7 @@ export function ViewerNavbar({
                         {message}!
                     </Alert>}
             </Snackbar>
-            <div style={{ position: 'fixed', width: "95.5%" }}>
+            <div style={{ position: 'fixed', width: "87.9%" }}>
                 <Toolbar className={color}>
                     <Grid className='text-dark'>
                         <div style={{ width: '400px', overflow: 'hidden' }} title={name}>
