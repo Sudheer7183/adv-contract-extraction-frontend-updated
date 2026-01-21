@@ -544,6 +544,34 @@ body[data-kt-aside-minimize='on'] {
   }
 }
 
+// Responsive table wrapper
+.table-responsive {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+
+  @media (max-width: 991px) {
+    border-radius: $modern-radius-lg;
+    box-shadow: $modern-shadow-sm;
+
+    .table {
+      min-width: 600px;
+    }
+  }
+}
+
+// KTCard for tables - ensure it's modernized
+.card {
+  &:has(.table-responsive),
+  &:has(table) {
+    @media (max-width: 767px) {
+      .card-body {
+        padding: $modern-spacing-2 !important;
+      }
+    }
+  }
+}
+
 // ============================================
 // MODALS
 // ============================================
@@ -1012,6 +1040,10 @@ a {
 
   &.grid-4 {
     grid-template-columns: repeat(auto-fill, minmax(calc(25% - #{$modern-spacing-3}), 1fr));
+  }
+
+  &.grid-5 {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   }
 
   @media (max-width: 991px) {
