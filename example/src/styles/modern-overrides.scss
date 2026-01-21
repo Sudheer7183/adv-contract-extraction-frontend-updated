@@ -211,19 +211,24 @@ body[data-viewer-page='active'] {
 body[data-kt-aside-minimize='on'] {
   .aside {
     width: $modern-sidebar-collapsed !important;
+    overflow: visible !important;
 
     .aside-menu {
       .menu {
         .menu-item {
           .menu-link {
             padding: $modern-spacing-3 !important;
-            justify-content: center;
+            justify-content: center !important;
             display: flex !important;
             align-items: center !important;
+            position: relative !important;
+            min-height: 48px !important;
 
             .menu-title,
             .menu-arrow {
               display: none !important;
+              opacity: 0 !important;
+              visibility: hidden !important;
             }
 
             .menu-icon {
@@ -234,18 +239,34 @@ body[data-kt-aside-minimize='on'] {
               width: 24px !important;
               height: 24px !important;
               font-size: 1.5rem !important;
+              opacity: 1 !important;
+              visibility: visible !important;
+              color: inherit !important;
 
-              i, svg {
+              i {
                 display: block !important;
                 font-size: 1.5rem !important;
                 width: 24px !important;
                 height: 24px !important;
+                opacity: 1 !important;
+                visibility: visible !important;
+              }
+
+              svg {
+                display: block !important;
+                font-size: 1.5rem !important;
+                width: 24px !important;
+                height: 24px !important;
+                opacity: 1 !important;
+                visibility: visible !important;
               }
 
               .svg-icon {
                 display: block !important;
                 width: 24px !important;
                 height: 24px !important;
+                opacity: 1 !important;
+                visibility: visible !important;
               }
             }
           }
@@ -291,6 +312,7 @@ body[data-kt-aside-minimize='on'] {
   // Content shifts for collapsed sidebar only
   .wrapper {
     margin-left: $modern-sidebar-collapsed !important;
+    width: calc(100% - #{$modern-sidebar-collapsed}) !important;
   }
 
   // Fix toolbar dropdown positioning when sidebar is collapsed
@@ -322,17 +344,20 @@ body[data-kt-aside-minimize='on'] {
   background: $modern-gray-50;
   margin-left: $modern-sidebar-width !important;
   transition: margin-left $modern-transition-smooth !important;
+  width: calc(100% - #{$modern-sidebar-width}) !important;
 }
 
 .content {
   background: transparent;
   padding: $modern-spacing-6 !important;
+  max-width: 100% !important;
+  width: 100% !important;
 }
 
 .post {
-  max-width: $modern-max-content-width;
-  margin: 0 auto;
-  width: 100%;
+  max-width: 100% !important;
+  width: 100% !important;
+  margin: 0 !important;
 }
 
 // ============================================
