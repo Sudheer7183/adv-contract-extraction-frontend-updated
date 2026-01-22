@@ -196,6 +196,7 @@
     align-items: center;
     height: get($header-config, height, tablet-and-mobile);
     width: 100%;
+    
 
     // Aside toggle hidden on mobile (Metronic default)
     .aside-minimize {

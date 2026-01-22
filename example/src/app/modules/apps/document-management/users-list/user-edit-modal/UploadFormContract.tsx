@@ -477,7 +477,8 @@ const UploadFormContract: FC<Props> = ({ id }) => {
 
   const Schema_name = localStorage.getItem('Schema')
   console.log("file_name", fname)
-  let path1 = 'frontend/adv-metronic';
+  // let path1 = 'frontend/adv-metronic';
+  let path1 ='D:/sudheer/Sudheer downloads/adv-updated-frontend-2/adv-metronic'
   let v_path = `${path1}/example/public/${Schema_name}/${projectName}/`
 
   console.log("Viewer_Path", v_path)

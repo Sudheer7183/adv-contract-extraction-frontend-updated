@@ -1,0 +1,124 @@
+/* ============================================
+   CARD HEADER DISPLAY FIX
+   Ensures project names and icons are visible
+   ============================================ */
+
+/* Force white text in card headers with gradients */
+.card .card-header[style*="background"] h3,
+.card .card-header[style*="gradient"] h3 {
+  color: #ffffff !important;
+  font-weight: 600 !important;
+  font-size: 16px !important;
+  margin-bottom: 0.25rem !important;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.card .card-header[style*="background"] p,
+.card .card-header[style*="gradient"] p {
+  color: rgba(255, 255, 255, 0.8) !important;
+  font-size: 12px !important;
+  margin-bottom: 0 !important;
+}
+
+/* Icons in header */
+.card .card-header[style*="background"] i,
+.card .card-header[style*="gradient"] i,
+.card .card-header[style*="background"] svg,
+.card .card-header[style*="gradient"] svg {
+  color: #ffffff !important;
+}
+
+/* All text in gradient headers should be white */
+.card .card-header[style*="background"] *,
+.card .card-header[style*="gradient"] * {
+  color: inherit;
+}
+
+.card .card-header[style*="background"],
+.card .card-header[style*="gradient"] {
+  color: white !important;
+}
+
+/* Specific overrides for nested elements */
+.card-header .text-white {
+  color: #ffffff !important;
+  opacity: 1 !important;
+}
+
+.card-header .text-white-50 {
+  color: rgba(255, 255, 255, 0.75) !important;
+  opacity: 1 !important;
+}
+
+/* Icon container styling */
+.card-header .rounded-3 {
+  background: rgba(255, 255, 255, 0.2) !important;
+  backdrop-filter: blur(10px);
+}
+
+/* Three-dot menu button */
+.card-header button.btn-icon {
+  background: rgba(255, 255, 255, 0.15) !important;
+  border: none !important;
+}
+
+.card-header button.btn-icon:hover {
+  background: rgba(255, 255, 255, 0.25) !important;
+}
+
+/* Ensure folder icon is visible */
+.bi-folder.text-white {
+  color: #ffffff !important;
+}
+
+/* Override any Bootstrap text utilities in gradient headers */
+.card-header[style*="background"] .text-gray-900,
+.card-header[style*="background"] .text-gray-800,
+.card-header[style*="background"] .text-dark,
+.card-header[style*="gradient"] .text-gray-900,
+.card-header[style*="gradient"] .text-gray-800,
+.card-header[style*="gradient"] .text-dark {
+  color: #ffffff !important;
+}
+
+/* Project name specific fix */
+.card-header .fw-bold {
+  color: #ffffff !important;
+  font-weight: 600 !important;
+}
+
+/* "by Admin" text */
+.card-header .small {
+  color: rgba(255, 255, 255, 0.75) !important;
+}
+
+/* Hover overlay */
+.card-hover-overlay {
+  pointer-events: none;
+}
+
+.card:hover .card-hover-overlay {
+  opacity: 1 !important;
+}
+
+/* Debug: If gradient is not showing, add fallback */
+.card .card-header {
+  min-height: 100px;
+  position: relative;
+}
+
+/* Ensure content is above gradient */
+.card-header .position-relative {
+  z-index: 1;
+}
+
+/* Additional Bootstrap class overrides */
+.card-header .d-flex h3,
+.card-header .d-flex .fw-bold {
+  color: white !important;
+}
+
+.card-header .d-flex p,
+.card-header .d-flex .small {
+  color: rgba(255, 255, 255, 0.8) !important;
+}

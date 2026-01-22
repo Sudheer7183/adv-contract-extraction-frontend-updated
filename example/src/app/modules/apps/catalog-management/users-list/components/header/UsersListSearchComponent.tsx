@@ -26,7 +26,7 @@ const UsersListSearchComponent = () => {
     <div className='card-title'>
       {/* begin::Search */}
       <div className='d-flex align-items-center position-relative my-1'>
-        <KTIcon iconName='magnifier' className='fs-1 position-absolute ms-6' />
+        <KTIcon iconName='magnifier' className='fs-1 position-absolute end-0 me-5' />
         <input
           type='text'
           data-kt-user-table-filter='search'

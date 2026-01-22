@@ -47,7 +47,7 @@ export function HeaderWrapper() {
       {...attributes.headerMenu}
     >
       {/* begin::Brand */}
-      <div className='header-brand'style={{backgroundColor:"#FFFFFF"}}>
+      <div className='header-brand'style={{backgroundColor:"#FFFFFF", width:"18.8%",height:"auto"}}>
         {/* <div className='header-brand' style={{ backgroundColor: '#00A4EF' }}> */}
         {aside.minimize && (
           <div

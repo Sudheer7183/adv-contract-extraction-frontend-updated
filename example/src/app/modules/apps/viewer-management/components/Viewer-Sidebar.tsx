@@ -2379,7 +2379,7 @@ export function Sidebar1({
                           )}
                         </div>
 
-                        <div style={{ 
+                        {/* <div style={{ 
                           backgroundColor: "#f9fafb",
                           padding: "12px",
                           borderRadius: "6px",
@@ -2457,7 +2457,49 @@ export function Sidebar1({
                               Click to expand...
                             </p>
                           )}
-                        </div>
+                        </div> */}
+
+                        <div style={{ 
+  backgroundColor: "#f9fafb",
+  padding: "12px",
+  borderRadius: "6px",
+  border: "1px solid #e5e7eb"
+}}>
+  {/* Header remains, but no expand button */}
+  <div style={{ 
+    marginBottom: "8px"
+  }}>
+    <span style={{ 
+      fontSize: "12px", 
+      fontWeight: 600, 
+      color: "#6b7280" 
+    }}>
+      Extracted Text:
+    </span>
+  </div>
+  
+  {/* Text is always visible */}
+  <p
+    onClick={() => {
+      updatedHash(selectedOccurrence.id);
+      scrollToView();
+    }}
+    style={{
+      margin: 0,
+      fontSize: "13px",
+      lineHeight: "1.6",
+      color: "#374151",
+      cursor: "pointer",
+      padding: "8px",
+      backgroundColor: "#fff",
+      borderRadius: "4px",
+      maxHeight: "200px",
+      overflowY: "auto"
+    }}
+  >
+    {selectedOccurrence?.content.text}
+  </p>
+</div>
                       </div>
                     )}
                   </li>
