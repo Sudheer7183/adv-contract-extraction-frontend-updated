@@ -376,16 +376,42 @@ body[data-kt-aside-minimize='on'] {
     box-shadow: $modern-shadow-md !important;
   }
 
+  // Card view specific styling (for project/document cards with gradient headers)
+  &.hover-shadow-lg {
+    &:hover {
+      box-shadow: $modern-shadow-2xl !important;
+      transform: translateY(-2px);
+    }
+  }
+
+  .card-hover-overlay {
+    &:hover {
+      opacity: 1 !important;
+    }
+  }
+
   .card-header {
     padding: $modern-spacing-6 !important;
     border-bottom: 1px solid $modern-gray-200 !important;
-    background: transparent !important;
+    // Don't override background if it has an inline style
+    &:not([style*="background"]):not([style*="gradient"]) {
+      background: transparent !important;
+    }
 
     .card-title {
       font-size: $modern-fs-xl !important;
       font-weight: $modern-fw-bold !important;
       color: $modern-gray-900 !important;
       margin: 0 !important;
+    }
+
+    // Ensure text is white when card header has gradient background
+    &[style*="gradient"] {
+      .card-title,
+      h1, h2, h3, h4, h5, h6,
+      p, span, div {
+        color: inherit;
+      }
     }
   }
 
