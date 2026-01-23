@@ -647,7 +647,7 @@ const ModernUsersTable = () => {
 
   // Calculate progress
   const calculateProgress = (totalFiles: number) => {
-    return totalFiles > 0 ? Math.min(Math.round((totalFiles / 20) * 100), 100) : 0;
+    return totalFiles > 0 ? Math.min(Math.round((totalFiles / 50) * 100), 100) : 0;
   };
 
   // Navigate to document management page
@@ -694,25 +694,52 @@ const ModernUsersTable = () => {
   return (
     <KTCardBody className='py-4'>
       {/* View Toggle Button */}
-      <div className='mb-4 d-flex justify-content-end'>
-        <div className='btn-group' role='group'>
-          <button
-            type='button'
-            className={`btn btn-sm ${viewMode === 'card' ? 'btn-primary' : 'btn-light'}`}
-            onClick={() => setViewMode('card')}
-          >
-            <i className='bi bi-grid-3x3-gap-fill'></i> Card View
-          </button>
-          <button
-            type='button'
-            className={`btn btn-sm ${viewMode === 'table' ? 'btn-primary' : 'btn-light'}`}
-            onClick={() => setViewMode('table')}
-          >
-            <i className='bi bi-table'></i> Table View
-          </button>
-        </div>
-      </div>
-
+<div className='mb-4 d-flex justify-content-end'>
+  <div 
+    className='btn-group' 
+    role='group'
+    style={{
+      boxShadow: '0 2px 4px rgba(0, 0, 0, 0.08)',
+      borderRadius: '10px',
+      overflow: 'hidden',
+      border: '1px solid #e5e7eb'
+    }}
+  >
+    <button
+      type='button'
+      className={`btn btn-sm ${viewMode === 'card' ? (backgroundColor || 'btn-primary') : 'btn-light'}`}
+      onClick={() => setViewMode('card')}
+      style={{
+        padding: '10px 20px',
+        fontSize: '14px',
+        fontWeight: viewMode === 'card' ? '600' : '500',
+        transition: 'all 0.2s ease',
+        border: 'none',
+        borderRight: '1px solid #e5e7eb',
+        color: viewMode === 'card' ? 'white' : '#6b7280'
+      }}
+    >
+      <i className='bi bi-grid-3x3-gap-fill me-2'></i>
+      Card View
+    </button>
+    <button
+      type='button'
+      className={`btn btn-sm ${viewMode === 'table' ? (backgroundColor || 'btn-primary') : 'btn-light'}`}
+      onClick={() => setViewMode('table')}
+      style={{
+        padding: '10px 20px',
+        fontSize: '14px',
+        fontWeight: viewMode === 'table' ? '600' : '500',
+        transition: 'all 0.2s ease',
+        border: 'none',
+        color: viewMode === 'table' ? 'white' : '#6b7280'
+      }}
+    >
+      <i className='bi bi-table me-2'></i>
+      Table View
+    </button>
+  </div>
+</div>
       {/* Card View */}
       {viewMode === 'card' && (
         <div className='row g-6 mb-8'>

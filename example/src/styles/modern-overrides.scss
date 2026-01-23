@@ -270,8 +270,18 @@ body[data-viewer-page='active'] {
   .card-header {
     padding: $modern-spacing-6 !important;
     border-bottom: 1px solid $modern-gray-200 !important;
-    background: transparent !important;
+    // background: transparent !important;
 
+    // .card-title {
+    //   font-size: $modern-fs-xl !important;
+    //   font-weight: $modern-fw-bold !important;
+    //   color: $modern-gray-900 !important;
+    //   margin: 0 !important;
+    // }
+     &:not([style*="background"]):not([style*="gradient"]) {
+      background: transparent !important;
+    }
+ 
     .card-title {
       font-size: $modern-fs-xl !important;
       font-weight: $modern-fw-bold !important;

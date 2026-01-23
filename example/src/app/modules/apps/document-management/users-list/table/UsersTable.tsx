@@ -16,7 +16,7 @@ import { useLayout } from '../../../../../../_metronic/layout/core'
 import AppContext from '../../../../../AppContext'
 import { UsersListLoading } from '../components/loading/UsersListLoading'
 import Pagination from './columns/pagination'
-
+import { useNavigate } from 'react-router-dom'
 const alldocuments = gql`
 query Filess($projectId: String!) {
     filess(projectId: $projectId) {
@@ -137,6 +137,7 @@ query Filess($projectId: String!, $name: String!) {
 }`
 // const pageSize = 1;
 const UsersTable = () => {
+  const navigate = useNavigate()
   const { currentUser } = useAuth()
   const { id } = useParams();
   const { setViewerPageActive } = useContext(AppContext);
@@ -188,7 +189,7 @@ const UsersTable = () => {
   const [filename, setFileName] = useState(filesearchValue)
   const [next, setNext] = useState<any[]>([]);
   const [isLoading, setIsLoading] = useState(false)
-
+  const [viewMode, setViewMode] = useState<'card' | 'table'>('table');
   const fetchData = () => {
     request(`${BASEURL}graphql/`, documents, variables, {Authorization: `Bearer ${localStorage.getItem('Token')}`}).then((res: any) => {
       console.log(res.filess.edges)
@@ -282,55 +283,6 @@ const UsersTable = () => {
   }
 
 
-  // const Pagination = (val: any) => {
-  //   const newSkip = skip + val;
-  //   if (newSkip >= 0 && newSkip < next.length) {
-  //     setSkip(newSkip);
-  //     const newPage = Math.ceil((newSkip + 1) / first);
-  //     setCurrentPage(newPage);
-  //     const newFrom = newSkip + 1;
-  //     const newTo = Math.min(newSkip + first, next.length);
-  //     setPageFirst(newFrom)
-  //     setPageNext(newTo)
-  //   }
-  // };
-
-  // const rowSize = (e: any) => {
-  //   // setFirst(e.target.value);
-  //   setFirst(Number(e.target.value));
-  //   setPageNext(Number(e.target.value))
-  // }
-  // const Pagination = (val: any) => {
-  //   const newSkip = skip + val;
-  //   if (newSkip >= 0 && newSkip < next.length) {
-  //     setSkip(newSkip);
-  //     const newPage = Math.ceil((newSkip + 1) / first);
-  //     setCurrentPage(newPage);
-  //     const newFrom = newSkip + 1;
-  //     const newTo = Math.min(newSkip + first, next.length);
-  //     setPageFirst(newFrom);
-  //     setPageNext(newTo);
-  //   } else if (newSkip >= next.length) {
-  //     // Handle edge case when skip value exceeds total data length
-  //     const lastPage = Math.ceil(next.length / first);
-  //     const correctedSkip = (lastPage - 1) * first;
-  //     setSkip(correctedSkip);
-  //     const newFrom = correctedSkip + 1;
-  //     const newTo = next.length;
-  //     setPageFirst(newFrom);
-  //     setPageNext(newTo);
-  //     setCurrentPage(lastPage);
-  //   }
-  // };
-
-  // const rowSize = (e: any) => {
-  //   const newSize = Number(e.target.value);
-  //   setFirst(newSize);
-  //   setSkip(0); // Reset skip to the first page
-  //   setCurrentPage(1); // Reset current page to 1
-  //   setPageFirst(1); // Reset pageFirst
-  //   setPageNext(Math.min(newSize, allDataLen)); // Reset pageNext
-  // };
 
   const allDataLen = next.length
   console.log("all data length", allDataLen);
@@ -410,69 +362,305 @@ const UsersTable = () => {
   const backgroundColor = getBackgroundColor(themeColor1);
   const tableHeader = themeColor1 != null ? `text-start fw-bolder gs-0 ${backgroundColor} bg-opacity-25` : 'text-start fw-bolder gs-0 bg-primary bg-opacity-25'
 
+  // Theme color functions
+  const getCardGradient = () => {
+    const defaultGradient = 'linear-gradient(135deg, #3b82f6 0%, #2563eb 100%)';
+    
+    if (!backgroundColor && !themeColor1) {
+      return defaultGradient;
+    }
+    
+    const gradientMap: any = {
+      'bg-primary': 'linear-gradient(135deg, #3b82f6 0%, #2563eb 100%)',
+      'bg-success': 'linear-gradient(135deg, #22c55e 0%, #16a34a 100%)',
+      'bg-danger': 'linear-gradient(135deg, #ef4444 0%, #dc2626 100%)',
+      'bg-warning': 'linear-gradient(135deg, #eab308 0%, #ca8a04 100%)',
+      'bg-info': 'linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%)',
+      'bg-dark': 'linear-gradient(135deg, #374151 0%, #1f2937 100%)',
+      'bg-secondary': 'linear-gradient(135deg, #6b7280 0%, #4b5563 100%)',
+    };
+    
+    return gradientMap[backgroundColor] || defaultGradient;
+  };
+
+  const getStatusColor = (status: string) => {
+    const statusMap: any = {
+      'Being Reviewed': 'badge-light-primary',
+      'Review Completed': 'badge-light-success',
+      'Pending': 'badge-light-warning',
+      'Processing': 'badge-light-info',
+    };
+    return statusMap[status] || 'badge-light-secondary';
+  };
+
+  const handleDocumentClick = (documentId: string) => {
+    // Navigate to viewer or document detail page
+    navigate(`/viewer-management/viewer/${id}/${documentId}`);
+  };
+
+  const filteredRows = rows.filter((item: any) =>
+    filesearchValue === "" ||
+    item.original.fileName?.toLowerCase().includes(filesearchValue.toLowerCase())
+  );
+
   return (
     <>
       <KTCardBody className='py-4'>
-        <div className='table-responsive'>
-          <table
-            id='kt_table_users'
-            className='table table-hover align-middle table-row-dashed dataTable no-footer table-striped'
-            {...getTableProps()}
+        {/* View Toggle Buttons with Theme Color */}
+        <div className='mb-4 d-flex justify-content-end'>
+          <div 
+            className='btn-group' 
+            role='group'
+            style={{
+              boxShadow: '0 2px 4px rgba(0, 0, 0, 0.08)',
+              borderRadius: '10px',
+              overflow: 'hidden',
+              border: '1px solid #e5e7eb'
+            }}
           >
-            <thead>
-              <tr className={tableHeader} style={{ height: '50px' }}>
-                {headers.map((column: ColumnInstance<User>) => (
-                  <CustomHeaderColumn key={column.id} column={column} />
-                ))}
-              </tr>
-            </thead>
-            <tbody className='text-gray-600 fw-bold' style={{ height: '50px' }} {...getTableBodyProps()}>
-              {rows.length > 0 ? (
-                (() => {
-                  const filteredRows = rows.filter((item: any) =>
-                    filesearchValue === "" ||
-                    item.original.fileName.toLowerCase().includes(filesearchValue.toLowerCase())
-                  );
-
-                  if (filteredRows.length === 0) {
-                    return (
-                      <tr>
-                        <td colSpan={7}>
-                          <div className='d-flex text-center w-100 align-content-center justify-content-center'>
-                            No matching records found
-                          </div>
-                        </td>
-                      </tr>
-                    );
-                  }
-
-                  return filteredRows.map((row: Row<User>, i) => {
-                    prepareRow(row);
-                    return <CustomRow row={row} key={`row-${i}-${row.id}`} />;
-                  });
-                })()
-              ) : (
-                <tr>
-                  <td colSpan={7}>
-                    <div className='d-flex text-center w-100 align-content-center justify-content-center'>
-                      No data available
-                    </div>
-                  </td>
-                </tr>
-              )}
-            </tbody>
-          </table>
+            <button
+              type='button'
+              className={`btn btn-sm ${viewMode === 'card' ? (backgroundColor || 'btn-primary') : 'btn-light'}`}
+              onClick={() => setViewMode('card')}
+              style={{
+                padding: '10px 20px',
+                fontSize: '14px',
+                fontWeight: viewMode === 'card' ? '600' : '500',
+                transition: 'all 0.2s ease',
+                border: 'none',
+                borderRight: '1px solid #e5e7eb',
+                color: viewMode === 'card' ? 'white' : '#6b7280'
+              }}
+            >
+              <i className='bi bi-grid-3x3-gap-fill me-2'></i>
+              Card View
+            </button>
+            <button
+              type='button'
+              className={`btn btn-sm ${viewMode === 'table' ? (backgroundColor || 'btn-primary') : 'btn-light'}`}
+              onClick={() => setViewMode('table')}
+              style={{
+                padding: '10px 20px',
+                fontSize: '14px',
+                fontWeight: viewMode === 'table' ? '600' : '500',
+                transition: 'all 0.2s ease',
+                border: 'none',
+                color: viewMode === 'table' ? 'white' : '#6b7280'
+              }}
+            >
+              <i className='bi bi-table me-2'></i>
+              Table View
+            </button>
+          </div>
         </div>
+
+        {/* Card View */}
+        {viewMode === 'card' && (
+          <div className='row g-6 mb-8'>
+            {filteredRows.length > 0 ? (
+              filteredRows.map((row: Row<User>, i) => {
+                prepareRow(row);
+                const document = row.original as any;
+                const cardGradient = getCardGradient();
+                
+                return (
+                  <div key={`card-${i}-${row.id}`} className='col-md-6 col-lg-4'>
+                    <div 
+                      className='card h-100 shadow-sm border-0 hover-shadow-lg transition-all'
+                      style={{
+                        transition: 'all 0.3s ease',
+                        cursor: 'pointer',
+                        borderRadius: '12px'
+                      }}
+                      onClick={() => handleDocumentClick(document.id)}
+                    >
+                      {/* Card Header with Theme Gradient */}
+                      <div 
+                        className='card-header border-0 pt-5 pb-5'
+                        style={{
+                          background: cardGradient,
+                          position: 'relative',
+                          overflow: 'hidden',
+                          minHeight: '100px',
+                          color: 'white',
+                          borderTopLeftRadius: '12px',
+                          borderTopRightRadius: '12px'
+                        }}
+                      >
+                        <div 
+                          className='card-hover-overlay'
+                          style={{
+                            position: 'absolute',
+                            inset: 0,
+                            background: 'rgba(0,0,0,0.05)',
+                            opacity: 0,
+                            transition: 'opacity 0.3s',
+                            pointerEvents: 'none'
+                          }}
+                        ></div>
+                        
+                        <div className='d-flex align-items-start position-relative' style={{ zIndex: 2 }}>
+                          <div 
+                            className='d-flex align-items-center justify-content-center rounded-3' 
+                            style={{
+                              width: '48px',
+                              height: '48px',
+                              background: 'rgba(255,255,255,0.2)',
+                              backdropFilter: 'blur(10px)',
+                              marginRight: '12px',
+                              flexShrink: 0
+                            }}
+                          >
+                            <i className='bi bi-file-earmark-text fs-2' style={{ color: 'white' }}></i>
+                          </div>
+                          
+                          <div style={{ flex: 1, minWidth: 0 }}>
+                            <h3 
+                              className='fw-bold mb-1' 
+                              style={{ 
+                                fontSize: '15px',
+                                color: 'white',
+                                fontWeight: '600',
+                                margin: 0,
+                                marginBottom: '4px',
+                                wordBreak: 'break-word',
+                                lineHeight: '1.4'
+                              }}
+                              title={document.fileName}
+                            >
+                              {document.fileName || 'Untitled Document'}
+                            </h3>
+                            <p 
+                              className='mb-0 small' 
+                              style={{ 
+                                color: 'rgba(255,255,255,0.8)',
+                                fontSize: '12px',
+                                margin: 0
+                              }}
+                            >
+                              {document.fileType || 'Document'}
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* Card Body */}
+                      <div className='card-body pt-4'>
+                        {/* Contract Type */}
+                        <div className='mb-3'>
+                          <div className='d-flex align-items-center gap-2 mb-2'>
+                            <i className='bi bi-bookmark fs-6 text-gray-600'></i>
+                            <span className='small text-gray-600'>Contract Type</span>
+                          </div>
+                          <span className='fw-semibold text-gray-900'>
+                            {document.userContractType?.contractTypeName || 'Not Assigned'}
+                          </span>
+                        </div>
+
+                        {/* Document Info */}
+                        <div className='d-flex align-items-center justify-content-between mb-3'>
+                          <div className='d-flex align-items-center gap-2'>
+                            <i className='bi bi-file-text text-gray-400'></i>
+                            <span className='small text-gray-600'>{document.pages || 0} pages</span>
+                          </div>
+                          <div className='d-flex align-items-center gap-2'>
+                            <i className='bi bi-globe text-gray-400'></i>
+                            <span className='small text-gray-600'>{document.language || 'N/A'}</span>
+                          </div>
+                        </div>
+
+                        {/* Status */}
+                        <div className='d-flex align-items-center justify-content-between pt-3 border-top border-gray-200'>
+                          <span className={`badge ${getStatusColor(document.fileStatus)}`}>
+                            {document.fileStatus || 'Pending'}
+                          </span>
+                          {document.lock && (
+                            <span className='badge badge-light-danger' title={`Locked by ${document.lockedBy?.username}`}>
+                              <i className='bi bi-lock-fill me-1'></i>
+                              Locked
+                            </span>
+                          )}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                );
+              })
+            ) : (
+              <div className='col-12'>
+                <div className='card shadow-sm border-0'>
+                  <div className='card-body text-center py-12'>
+                    <div className='d-flex align-items-center justify-content-center mb-4' style={{
+                      width: '80px',
+                      height: '80px',
+                      background: '#f8f9fa',
+                      borderRadius: '50%',
+                      margin: '0 auto'
+                    }}>
+                      <i className='bi bi-file-earmark-text text-gray-400 fs-2x'></i>
+                    </div>
+                    <h3 className='fw-bold text-gray-900 mb-2'>No documents found</h3>
+                    <p className='text-gray-600 mb-0'>
+                      {filesearchValue ? 'No matching documents found' : 'Upload documents to get started'}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            )}
+          </div>
+        )}
+
+        {/* Table View (Original) */}
+        {viewMode === 'table' && (
+          <div className='table-responsive'>
+            <table
+              id='kt_table_users'
+              className='table table-hover align-middle table-row-dashed dataTable no-footer table-striped'
+              {...getTableProps()}
+            >
+              <thead>
+                <tr className={tableHeader} style={{ height: '50px' }}>
+                  {headers.map((column: ColumnInstance<User>) => (
+                    <CustomHeaderColumn key={column.id} column={column} />
+                  ))}
+                </tr>
+              </thead>
+              <tbody className='text-gray-600 fw-bold' style={{ height: '50px' }} {...getTableBodyProps()}>
+                {rows.length > 0 ? (
+                  (() => {
+                    if (filteredRows.length === 0) {
+                      return (
+                        <tr>
+                          <td colSpan={7}>
+                            <div className='d-flex text-center w-100 align-content-center justify-content-center'>
+                              No matching records found
+                            </div>
+                          </td>
+                        </tr>
+                      );
+                    }
+
+                    return filteredRows.map((row: Row<User>, i) => {
+                      prepareRow(row);
+                      return <CustomRow row={row} key={`row-${i}-${row.id}`} />;
+                    });
+                  })()
+                ) : (
+                  <tr>
+                    <td colSpan={7}>
+                      <div className='d-flex text-center w-100 align-content-center justify-content-center'>
+                        No data available
+                      </div>
+                    </td>
+                  </tr>
+                )}
+              </tbody>
+            </table>
+          </div>
+        )}
+
+        {/* Pagination */}
         <div className="float-start">
-          {/* <div className='pagination'>
-            <select value={first} onChange={rowSize} className='form-select h-38px'>
-              <option value='5'>5</option>
-              <option value='10'>10</option>
-              <option value='15'>15</option>
-              <option value='20'>20</option>
-            </select>
-          </div> */}
-          {/* <p>{pageFirst}-{pageNext} of {allDataLen}</p> */}
         </div>
         <div className="float-end">
           <div className='pagination'>
@@ -482,28 +670,31 @@ const UsersTable = () => {
           </div>
         </div>
 
-        {/* <div className="float-end">
-          <nav aria-label="...">
-            <ul className="pagination">
-              <li className={`page-item ${Enable}`}>
-                <a className="page-link" onClick={() => Pagination(- Number(first))}>Previous</a>
-              </li>
-              <li className={`page-item ${Disable}`}>
-                <a className="page-link" onClick={() => Pagination(Number(first))}>Next</a>
-              </li>
-            </ul>
-          </nav>
-        </div> */}
-        {/* <UsersListPagination data={data} /> */}
         {isLoading && <UsersListLoading />}
+        
+        <style jsx>{`
+          .hover-shadow-lg:hover {
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04) !important;
+            transform: translateY(-4px);
+          }
+          
+          .transition-all {
+            transition: all 0.3s ease;
+          }
+          
+          .card:hover .card-hover-overlay {
+            opacity: 1 !important;
+          }
+          
+          .card-header h3,
+          .card-header p,
+          .card-header i {
+            color: white !important;
+          }
+        `}</style>
       </KTCardBody>
     </>
   )
 }
 
-
 export { UsersTable }
-
-
-
-
