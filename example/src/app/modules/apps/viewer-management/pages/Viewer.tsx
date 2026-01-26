@@ -207,8 +207,15 @@ function Viewer() {
     useEffect(() => {
         if (!aside.minimized) {
             document.body.setAttribute('data-kt-aside-minimize', 'on')
+            document.body.setAttribute('data-viewer-page', 'active')
             setViewerPageActive(true)
 
+        }
+
+        // Cleanup: remove viewer page attribute when component unmounts
+        return () => {
+            document.body.removeAttribute('data-viewer-page')
+            setViewerPageActive(false)
         }
         request(`${BASEURL}graphql/`, viewerFile, { id: id }, {Authorization: `Bearer ${localStorage.getItem('Token')}`}).then((res: any) => {
             setData(res.viewerFile)
@@ -467,13 +474,14 @@ function Viewer() {
                 scrollToView={scrollToHighlightFromHash}
                 readOnly={readMode}
             />
-            <div style={{ display: "flex", height: "75.5vh", paddingTop: '68px' }}>
+            <div style={{ display: "flex", height: "75.5vh", paddingTop: '68px', width: '100%' }}>
                 <div
                     style={{
                         // height: "88vh",
-                        width: "75vw",
+                        flex: "1",
                         position: "relative",
                         zIndex: '99',
+                        overflow: 'hidden'
                     }}
                 >
                     <PdfLoader url={url} beforeLoad={<Spinner />}>

@@ -1,0 +1,1554 @@
+// ============================================
+// MODERN STYLE OVERRIDES
+// Applies modern styling to existing Metronic components
+// ============================================
+
+@import './modern-theme.scss';
+
+// ============================================
+// GLOBAL LAYOUT
+// ============================================
+
+body {
+  font-family: $modern-font-primary;
+  background: $modern-gray-50;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.page {
+  background: $modern-gray-50;
+}
+
+// ============================================
+// HEADER - White background with proper alignment
+// ============================================
+
+.header {
+  background: #FFFFFF !important;
+  background-color: #FFFFFF !important;
+  border-bottom: 1px solid $modern-gray-200 !important;
+  box-shadow: $modern-shadow-sm !important;
+  height: $modern-header-height !important;
+  display: flex !important;
+  align-items: stretch !important;
+}
+
+.header-brand {
+  background: #FFFFFF !important;
+  background-color: #FFFFFF !important;
+  border-right: 1px solid $modern-gray-200 !important;
+  width: $modern-sidebar-width !important;
+  min-width: $modern-sidebar-width !important;
+  display: flex !important;
+  align-items: center !important;
+  padding: 0 !important;
+  flex-shrink: 0 !important;
+}
+
+// Toolbar area styling
+.toolbar {
+  background: #FFFFFF !important;
+  background-color: #FFFFFF !important;
+  flex: 1 !important;
+  display: flex !important;
+  align-items: center !important;
+}
+
+.header-menu {
+  background: #FFFFFF !important;
+  background-color: #FFFFFF !important;
+}
+
+// Override any theme-specific header colors
+#kt_header {
+  background: #FFFFFF !important;
+  background-color: #FFFFFF !important;
+}
+
+// Header container
+.header-container {
+  background: transparent !important;
+  background-color: transparent !important;
+}
+
+// Override any asideTheme classes that might add colors
+[class*="asideTheme"] {
+  background: #FFFFFF !important;
+  background-color: #FFFFFF !important;
+}
+
+// ============================================
+// SIDEBAR
+// ============================================
+
+.aside {
+  background: #FFFFFF !important;
+  border-right: 1px solid $modern-gray-200 !important;
+  box-shadow: $modern-shadow-sm !important;
+  width: $modern-sidebar-width !important;
+
+  &::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: $modern-gray-300;
+    border-radius: $modern-radius-full;
+
+    &:hover {
+      background: $modern-gray-400;
+    }
+  }
+}
+
+.aside-menu {
+  padding: $modern-spacing-4 $modern-spacing-2;
+
+  .menu {
+    .menu-item {
+      margin-bottom: $modern-spacing-1;
+
+      .menu-link {
+        padding: $modern-spacing-3 $modern-spacing-4 !important;
+        border-radius: $modern-radius-md !important;
+        color: $modern-sidebar-text !important;
+        font-size: $modern-fs-sm !important;
+        font-weight: $modern-fw-medium !important;
+        transition: all $modern-transition-base !important;
+
+        &:hover {
+          background: $modern-sidebar-item-hover !important;
+          color: $modern-primary !important;
+        }
+
+        .menu-icon {
+          color: inherit !important;
+
+          i, svg {
+            color: inherit !important;
+          }
+        }
+
+        .menu-title {
+          font-weight: $modern-fw-medium !important;
+          color: inherit !important;
+        }
+
+        .menu-arrow {
+          transition: transform $modern-transition-base !important;
+          color: $modern-gray-400 !important;
+        }
+      }
+
+      &.here,
+      &.show {
+        > .menu-link {
+          background: $modern-sidebar-item-active !important;
+          color: $modern-sidebar-text-active !important;
+          font-weight: $modern-fw-semibold !important;
+
+          .menu-icon {
+            color: $modern-primary !important;
+
+            i, svg {
+              color: $modern-primary !important;
+            }
+          }
+        }
+      }
+    }
+
+    .menu-section {
+      padding: $modern-spacing-4 $modern-spacing-4 $modern-spacing-2 !important;
+      font-size: $modern-fs-xs !important;
+      font-weight: $modern-fw-bold !important;
+      color: $modern-gray-500 !important;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+  }
+}
+
+// ============================================
+// VIEWER PAGE - KEEP SIDEBAR COLLAPSED WITH ICONS
+// ============================================
+
+body[data-viewer-page='active'] {
+  .aside {
+    width: $modern-sidebar-collapsed !important;
+  }
+
+  .wrapper {
+    margin-left: $modern-sidebar-collapsed !important;
+    max-width: 100% !important;
+  }
+
+  .header-brand {
+    width: $modern-sidebar-width !important;
+    min-width: $modern-sidebar-width !important;
+  }
+
+  // Ensure content area uses full available width
+  .content {
+    padding: 0 !important;
+    max-width: 100% !important;
+  }
+
+  .post {
+    max-width: 100% !important;
+  }
+}
+
+// ============================================
+// SIDEBAR MINIMIZE STATE
+// ============================================
+
+body[data-kt-aside-minimize='on'] {
+  .aside {
+    width: $modern-sidebar-collapsed !important;
+    overflow: visible !important;
+
+    .aside-menu {
+      .menu {
+        .menu-item {
+          .menu-link {
+            padding: $modern-spacing-3 !important;
+            justify-content: center !important;
+            display: flex !important;
+            align-items: center !important;
+            position: relative !important;
+            min-height: 48px !important;
+
+            .menu-title,
+            .menu-arrow {
+              display: none !important;
+              opacity: 0 !important;
+              visibility: hidden !important;
+            }
+
+            .menu-icon {
+              margin: 0 !important;
+              display: flex !important;
+              align-items: center !important;
+              justify-content: center !important;
+              width: 24px !important;
+              height: 24px !important;
+              font-size: 1.5rem !important;
+              opacity: 1 !important;
+              visibility: visible !important;
+              color: inherit !important;
+
+              i {
+                display: block !important;
+                font-size: 1.5rem !important;
+                width: 24px !important;
+                height: 24px !important;
+                opacity: 1 !important;
+                visibility: visible !important;
+              }
+
+              svg {
+                display: block !important;
+                font-size: 1.5rem !important;
+                width: 24px !important;
+                height: 24px !important;
+                opacity: 1 !important;
+                visibility: visible !important;
+              }
+
+              .svg-icon {
+                display: block !important;
+                width: 24px !important;
+                height: 24px !important;
+                opacity: 1 !important;
+                visibility: visible !important;
+              }
+            }
+          }
+
+          &.here,
+          &.show {
+            > .menu-link {
+              position: relative;
+
+              &::after {
+                content: '';
+                position: absolute;
+                left: 0;
+                top: 50%;
+                transform: translateY(-50%);
+                width: 4px;
+                height: 70%;
+                background: $modern-primary;
+                border-radius: 0 $modern-radius-sm $modern-radius-sm 0;
+              }
+            }
+          }
+
+          .menu-sub {
+            display: none !important;
+          }
+        }
+
+        .menu-section {
+          display: none !important;
+        }
+      }
+    }
+  }
+
+  // Header-brand (logo) stays at full width - DO NOT collapse
+  .header-brand {
+    width: $modern-sidebar-width !important;
+    min-width: $modern-sidebar-width !important;
+    // Logo stays visible at full size
+  }
+
+  // Content shifts for collapsed sidebar only
+  .wrapper {
+    margin-left: $modern-sidebar-collapsed !important;
+    width: calc(100% - #{$modern-sidebar-collapsed}) !important;
+  }
+
+  // Fix toolbar dropdown positioning when sidebar is collapsed
+  .toolbar {
+    position: relative !important;
+    overflow: visible !important;
+    z-index: 100 !important;
+  }
+
+  // Ensure header has proper overflow and positioning
+  .header {
+    overflow: visible !important;
+    z-index: 105 !important;
+  }
+
+  // Fix dropdown menu positioning in toolbar
+  .toolbar .dropdown-menu,
+  .header .dropdown-menu {
+    position: absolute !important;
+    z-index: 1050 !important;
+  }
+}
+
+// ============================================
+// CONTENT AREA
+// ============================================
+
+.wrapper {
+  background: $modern-gray-50;
+  margin-left: $modern-sidebar-width !important;
+  transition: margin-left $modern-transition-smooth !important;
+  width: calc(100% - #{$modern-sidebar-width}) !important;
+}
+
+.content {
+  background: transparent;
+  padding: $modern-spacing-6 !important;
+  max-width: 100% !important;
+  width: 100% !important;
+}
+
+.post {
+  max-width: 100% !important;
+  width: 100% !important;
+  margin: 0 !important;
+}
+
+// ============================================
+// CARDS
+// ============================================
+
+.card {
+  background: #FFFFFF;
+  border-radius: $modern-card-radius !important;
+  border: 1px solid $modern-card-border !important;
+  box-shadow: $modern-card-shadow !important;
+  transition: all $modern-transition-base !important;
+  margin-bottom: $modern-spacing-6 !important;
+
+  &:hover {
+    box-shadow: $modern-shadow-md !important;
+  }
+
+  // Card view specific styling (for project/document cards with gradient headers)
+  &.hover-shadow-lg {
+    &:hover {
+      box-shadow: $modern-shadow-2xl !important;
+      transform: translateY(-2px);
+    }
+  }
+
+  .card-hover-overlay {
+    &:hover {
+      opacity: 1 !important;
+    }
+  }
+
+  .card-header {
+    padding: $modern-spacing-6 !important;
+    border-bottom: 1px solid $modern-gray-200 !important;
+    // Don't override background if it has an inline style
+    &:not([style*="background"]):not([style*="gradient"]) {
+      background: transparent !important;
+    }
+
+    .card-title {
+      font-size: $modern-fs-xl !important;
+      font-weight: $modern-fw-bold !important;
+      color: $modern-gray-900 !important;
+      margin: 0 !important;
+    }
+
+    // Ensure text is white when card header has gradient background
+    &[style*="gradient"] {
+      .card-title,
+      h1, h2, h3, h4, h5, h6,
+      p, span, div {
+        color: inherit;
+      }
+    }
+  }
+
+  .card-body {
+    padding: $modern-spacing-6 !important;
+  }
+
+  .card-footer {
+    padding: $modern-spacing-6 !important;
+    border-top: 1px solid $modern-gray-200 !important;
+    background: transparent !important;
+  }
+}
+
+// ============================================
+// BUTTONS
+// ============================================
+
+.btn {
+  border-radius: $modern-btn-radius !important;
+  font-weight: $modern-fw-semibold !important;
+  font-size: $modern-fs-sm !important;
+  padding: $modern-btn-padding-y $modern-btn-padding-x !important;
+  transition: all $modern-transition-base !important;
+  font-family: $modern-font-primary;
+
+  &:not(:disabled):hover {
+    transform: translateY(-1px);
+  }
+
+  &:not(:disabled):active {
+    transform: translateY(0);
+  }
+}
+
+.btn-primary {
+  background: $modern-primary !important;
+  border-color: $modern-primary !important;
+  color: #FFFFFF !important;
+
+  &:hover {
+    background: $modern-primary-dark !important;
+    border-color: $modern-primary-dark !important;
+  }
+
+  &:focus {
+    box-shadow: 0 0 0 3px rgba(0, 102, 255, 0.2) !important;
+  }
+}
+
+.btn-secondary {
+  background: $modern-gray-100 !important;
+  border-color: $modern-gray-300 !important;
+  color: $modern-gray-700 !important;
+
+  &:hover {
+    background: $modern-gray-200 !important;
+    border-color: $modern-gray-400 !important;
+  }
+}
+
+.btn-success {
+  background: $modern-success !important;
+  border-color: $modern-success !important;
+
+  &:hover {
+    background: $modern-success-dark !important;
+    border-color: $modern-success-dark !important;
+  }
+}
+
+.btn-danger {
+  background: $modern-error !important;
+  border-color: $modern-error !important;
+
+  &:hover {
+    background: $modern-error-dark !important;
+    border-color: $modern-error-dark !important;
+  }
+}
+
+.btn-warning {
+  background: $modern-warning !important;
+  border-color: $modern-warning !important;
+
+  &:hover {
+    background: $modern-warning-dark !important;
+    border-color: $modern-warning-dark !important;
+  }
+}
+
+.btn-light {
+  background: #FFFFFF !important;
+  border-color: $modern-gray-300 !important;
+  color: $modern-gray-700 !important;
+
+  &:hover {
+    background: $modern-gray-50 !important;
+    border-color: $modern-gray-400 !important;
+  }
+}
+
+// ============================================
+// FORMS
+// ============================================
+
+.form-control,
+.form-select {
+  border-radius: $modern-input-radius !important;
+  border-color: $modern-input-border !important;
+  font-size: $modern-input-font-size !important;
+  padding: $modern-input-padding-y $modern-input-padding-x !important;
+  transition: all $modern-transition-base !important;
+  font-family: $modern-font-primary;
+  color: $modern-gray-900 !important;
+
+  &:focus {
+    border-color: $modern-input-border-focus !important;
+    box-shadow: 0 0 0 3px rgba(0, 102, 255, 0.1) !important;
+  }
+
+  &::placeholder {
+    color: $modern-gray-400 !important;
+  }
+}
+
+.form-label {
+  font-size: $modern-fs-sm !important;
+  font-weight: $modern-fw-medium !important;
+  color: $modern-gray-700 !important;
+  margin-bottom: $modern-spacing-2 !important;
+}
+
+// ============================================
+// TABLES
+// ============================================
+
+.table {
+  font-size: $modern-fs-sm !important;
+  font-family: $modern-font-primary;
+
+  thead {
+    background: $modern-table-header-bg !important;
+
+    th {
+      background: $modern-table-header-bg !important;
+      font-weight: $modern-fw-semibold !important;
+      color: $modern-gray-700 !important;
+      border-bottom: 2px solid $modern-table-border !important;
+      padding: $modern-table-cell-padding !important;
+      white-space: nowrap;
+    }
+  }
+
+  tbody {
+    td {
+      padding: $modern-table-cell-padding !important;
+      border-bottom: 1px solid $modern-table-border !important;
+      color: $modern-gray-800 !important;
+    }
+
+    tr {
+      transition: background-color $modern-transition-base !important;
+
+      &:hover {
+        background: $modern-table-hover-bg !important;
+      }
+    }
+  }
+}
+
+.table-striped {
+  tbody {
+    tr:nth-of-type(even) {
+      background: $modern-table-stripe-bg !important;
+
+      &:hover {
+        background: $modern-table-hover-bg !important;
+      }
+    }
+  }
+}
+
+// Responsive table wrapper
+.table-responsive {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+
+  @media (max-width: 991px) {
+    border-radius: $modern-radius-lg;
+    box-shadow: $modern-shadow-sm;
+
+    .table {
+      min-width: 600px;
+    }
+  }
+}
+
+// KTCard for tables - ensure it's modernized
+.card {
+  &:has(.table-responsive),
+  &:has(table) {
+    @media (max-width: 767px) {
+      .card-body {
+        padding: $modern-spacing-2 !important;
+      }
+    }
+  }
+}
+
+// ============================================
+// MODALS
+// ============================================
+
+.modal-content {
+  border-radius: $modern-radius-xl !important;
+  border: none !important;
+  box-shadow: $modern-shadow-2xl !important;
+}
+
+.modal-header {
+  padding: $modern-spacing-6 !important;
+  border-bottom: 1px solid $modern-gray-200 !important;
+
+  .modal-title {
+    font-size: $modern-fs-xl !important;
+    font-weight: $modern-fw-bold !important;
+    color: $modern-gray-900 !important;
+  }
+
+  .btn-close {
+    &:focus {
+      box-shadow: none !important;
+    }
+  }
+}
+
+.modal-body {
+  padding: $modern-spacing-6 !important;
+}
+
+.modal-footer {
+  padding: $modern-spacing-6 !important;
+  border-top: 1px solid $modern-gray-200 !important;
+}
+
+// ============================================
+// BADGES & PILLS
+// ============================================
+
+.badge {
+  padding: 0.25rem 0.75rem !important;
+  border-radius: $modern-radius-full !important;
+  font-weight: $modern-fw-semibold !important;
+  font-size: $modern-fs-xs !important;
+}
+
+// ============================================
+// DROPDOWNS
+// ============================================
+
+.dropdown-menu {
+  border-radius: $modern-radius-lg !important;
+  border: 1px solid $modern-gray-200 !important;
+  box-shadow: $modern-shadow-lg !important;
+  padding: $modern-spacing-2 !important;
+  position: absolute !important;
+  z-index: 1050 !important;
+
+  .dropdown-item {
+    border-radius: $modern-radius-md !important;
+    padding: $modern-spacing-2 $modern-spacing-4 !important;
+    font-size: $modern-fs-sm !important;
+    transition: all $modern-transition-base !important;
+
+    &:hover {
+      background: $modern-gray-100 !important;
+      color: $modern-primary !important;
+    }
+
+    &:active {
+      background: $modern-primary-lighter !important;
+      color: $modern-primary !important;
+    }
+  }
+
+  .dropdown-divider {
+    border-color: $modern-gray-200 !important;
+  }
+}
+
+// Ensure toolbar dropdowns are positioned correctly
+.toolbar,
+.header-menu,
+.header {
+  .dropdown,
+  .dropup,
+  .dropend,
+  .dropstart {
+    position: relative !important;
+  }
+
+  .dropdown-toggle {
+    &::after {
+      vertical-align: middle !important;
+    }
+  }
+}
+
+// Fix for menu dropdowns in toolbar
+.menu-dropdown {
+  .dropdown-menu {
+    margin-top: 0.5rem !important;
+  }
+}
+
+// ============================================
+// PAGINATION
+// ============================================
+
+.pagination {
+  .page-link {
+    border-radius: $modern-radius-md !important;
+    border-color: $modern-gray-300 !important;
+    color: $modern-gray-700 !important;
+    padding: $modern-spacing-2 $modern-spacing-4 !important;
+    margin: 0 $modern-spacing-1 !important;
+    transition: all $modern-transition-base !important;
+
+    &:hover {
+      background: $modern-gray-100 !important;
+      border-color: $modern-gray-400 !important;
+    }
+
+    &:focus {
+      box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.05) !important;
+    }
+  }
+
+  .page-item {
+    &.active .page-link {
+      background: $modern-primary !important;
+      border-color: $modern-primary !important;
+      color: #FFFFFF !important;
+    }
+
+    &.disabled .page-link {
+      opacity: 0.5;
+    }
+  }
+}
+
+// ============================================
+// ALERTS
+// ============================================
+
+.alert {
+  border-radius: $modern-radius-lg !important;
+  border: none !important;
+  padding: $modern-spacing-4 !important;
+  font-size: $modern-fs-sm !important;
+}
+
+.alert-primary {
+  background: $modern-primary-lighter !important;
+  color: $modern-primary-dark !important;
+}
+
+.alert-success {
+  background: $modern-success-bg !important;
+  color: $modern-success-dark !important;
+}
+
+.alert-warning {
+  background: $modern-warning-bg !important;
+  color: $modern-warning-dark !important;
+}
+
+.alert-danger {
+  background: $modern-error-bg !important;
+  color: $modern-error-dark !important;
+}
+
+.alert-info {
+  background: $modern-info-bg !important;
+  color: $modern-info-dark !important;
+}
+
+// ============================================
+// RESPONSIVE DESIGN
+// ============================================
+
+// Tablet Mode (768px - 991px)
+@media (max-width: 991px) {
+  .content {
+    padding: $modern-spacing-4 !important;
+  }
+
+  .card {
+    .card-header,
+    .card-body,
+    .card-footer {
+      padding: $modern-spacing-4 !important;
+    }
+  }
+
+  // Mobile-friendly sidebar
+  .aside {
+    position: fixed !important;
+    left: -280px !important;
+    transition: left 0.3s ease-in-out !important;
+    z-index: 110 !important;
+    height: 100vh !important;
+    box-shadow: $modern-shadow-2xl !important;
+
+    &.drawer-on {
+      left: 0 !important;
+    }
+  }
+
+  // Adjust wrapper for mobile
+  .wrapper {
+    margin-left: 0 !important;
+  }
+
+  // Header adjustments
+  .header {
+    .header-brand {
+      width: auto !important;
+      min-width: auto !important;
+      padding: 0 $modern-spacing-4 !important;
+    }
+  }
+
+  // Mobile menu toggle button
+  .btn-mobile-menu {
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: $modern-radius-md;
+    background: transparent;
+    border: 1px solid $modern-gray-300;
+    color: $modern-gray-700;
+    cursor: pointer;
+    transition: all $modern-transition-base;
+
+    &:hover {
+      background: $modern-gray-100;
+      border-color: $modern-gray-400;
+    }
+  }
+
+  // Stack toolbar items vertically on tablet
+  .toolbar {
+    flex-wrap: wrap !important;
+    gap: $modern-spacing-2 !important;
+  }
+}
+
+// Mobile Mode (< 768px)
+@media (max-width: 767px) {
+  // Smaller content padding
+  .content {
+    padding: $modern-spacing-3 !important;
+  }
+
+  .card {
+    .card-header,
+    .card-body,
+    .card-footer {
+      padding: $modern-spacing-3 !important;
+    }
+
+    .card-title {
+      font-size: $modern-fs-lg !important;
+    }
+  }
+
+  // Full-width buttons on mobile
+  .btn-group {
+    flex-direction: column !important;
+    width: 100% !important;
+
+    .btn {
+      width: 100% !important;
+      border-radius: $modern-btn-radius !important;
+      margin-bottom: $modern-spacing-2 !important;
+    }
+  }
+
+  // Mobile-optimized forms
+  .form-control,
+  .form-select {
+    font-size: 16px !important; // Prevents zoom on iOS
+    padding: $modern-spacing-3 $modern-spacing-4 !important;
+  }
+
+  // Stack form groups
+  .row {
+    > [class*='col-'] {
+      margin-bottom: $modern-spacing-3 !important;
+    }
+  }
+
+  // Mobile-friendly modals
+  .modal-dialog {
+    margin: $modern-spacing-2 !important;
+    max-width: calc(100% - #{$modern-spacing-4}) !important;
+  }
+
+  // Responsive tables - horizontal scroll
+  .table-responsive {
+    border-radius: $modern-radius-lg;
+    box-shadow: $modern-shadow-sm;
+
+    .table {
+      min-width: 600px; // Ensures horizontal scroll
+    }
+  }
+
+  // Mobile navigation
+  .header {
+    height: auto !important;
+    min-height: 60px !important;
+    flex-wrap: wrap !important;
+  }
+
+  // Typography adjustments
+  h1 { font-size: $modern-fs-3xl !important; }
+  h2 { font-size: $modern-fs-2xl !important; }
+  h3 { font-size: $modern-fs-xl !important; }
+  h4 { font-size: $modern-fs-lg !important; }
+  h5 { font-size: $modern-fs-md !important; }
+  h6 { font-size: $modern-fs-sm !important; }
+}
+
+// Small Mobile Mode (< 576px)
+@media (max-width: 576px) {
+  .content {
+    padding: $modern-spacing-2 !important;
+  }
+
+  .card {
+    border-radius: $modern-radius-md !important;
+
+    .card-header,
+    .card-body,
+    .card-footer {
+      padding: $modern-spacing-3 !important;
+    }
+  }
+
+  // Stack pagination
+  .pagination {
+    flex-wrap: wrap !important;
+    justify-content: center !important;
+
+    .page-item {
+      margin: $modern-spacing-1 !important;
+    }
+  }
+
+  // Compact alerts
+  .alert {
+    padding: $modern-spacing-3 !important;
+    font-size: $modern-fs-xs !important;
+  }
+
+  // Mobile-optimized badges
+  .badge {
+    font-size: 10px !important;
+    padding: 0.2rem 0.5rem !important;
+  }
+
+  // Reduce spacing
+  .mb-4, .my-4 {
+    margin-bottom: $modern-spacing-3 !important;
+  }
+
+  .mt-4, .my-4 {
+    margin-top: $modern-spacing-3 !important;
+  }
+}
+
+// ============================================
+// RESPONSIVE UTILITIES
+// ============================================
+
+// Hide on mobile
+@media (max-width: 767px) {
+  .hide-mobile {
+    display: none !important;
+  }
+}
+
+// Hide on desktop
+@media (min-width: 768px) {
+  .hide-desktop {
+    display: none !important;
+  }
+
+  .btn-mobile-menu {
+    display: none !important;
+  }
+}
+
+// Touch-friendly elements
+@media (hover: none) and (pointer: coarse) {
+  // Increase touch targets
+  .btn,
+  .form-control,
+  .dropdown-item {
+    min-height: 44px !important; // iOS minimum touch target
+  }
+
+  .menu-link {
+    min-height: 48px !important;
+    padding: $modern-spacing-4 !important;
+  }
+
+  // Remove hover effects on touch devices
+  *:hover {
+    -webkit-tap-highlight-color: transparent;
+  }
+}
+
+// ============================================
+// TYPOGRAPHY
+// ============================================
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: $modern-font-heading;
+  font-weight: $modern-fw-bold;
+  color: $modern-gray-900;
+}
+
+h1 { font-size: $modern-fs-4xl !important; }
+h2 { font-size: $modern-fs-3xl !important; }
+h3 { font-size: $modern-fs-2xl !important; }
+h4 { font-size: $modern-fs-xl !important; }
+h5 { font-size: $modern-fs-lg !important; }
+h6 { font-size: $modern-fs-md !important; }
+
+p {
+  font-family: $modern-font-primary;
+  color: $modern-gray-700;
+}
+
+a {
+  color: $modern-primary;
+  transition: color $modern-transition-base;
+
+  &:hover {
+    color: $modern-primary-dark;
+  }
+}
+
+// ============================================
+// MODERN GRID SYSTEM
+// ============================================
+
+.modern-grid {
+  display: grid;
+  gap: $modern-spacing-4;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+
+  &.grid-2 {
+    grid-template-columns: repeat(auto-fill, minmax(calc(50% - #{$modern-spacing-2}), 1fr));
+  }
+
+  &.grid-3 {
+    grid-template-columns: repeat(auto-fill, minmax(calc(33.333% - #{$modern-spacing-3}), 1fr));
+  }
+
+  &.grid-4 {
+    grid-template-columns: repeat(auto-fill, minmax(calc(25% - #{$modern-spacing-3}), 1fr));
+  }
+
+  &.grid-5 {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  }
+
+  @media (max-width: 991px) {
+    grid-template-columns: repeat(auto-fill, minmax(calc(50% - #{$modern-spacing-2}), 1fr)) !important;
+  }
+
+  @media (max-width: 576px) {
+    grid-template-columns: 1fr !important;
+    gap: $modern-spacing-3;
+  }
+}
+
+// Flexbox utilities
+.modern-flex {
+  display: flex;
+  gap: $modern-spacing-4;
+
+  &.flex-wrap {
+    flex-wrap: wrap;
+  }
+
+  &.flex-center {
+    align-items: center;
+    justify-content: center;
+  }
+
+  &.flex-between {
+    justify-content: space-between;
+  }
+
+  &.flex-column {
+    flex-direction: column;
+  }
+}
+
+// ============================================
+// MODERN STATS CARDS
+// ============================================
+
+.stat-card {
+  background: linear-gradient(135deg, $modern-primary 0%, $modern-primary-dark 100%);
+  border-radius: $modern-radius-xl;
+  padding: $modern-spacing-6;
+  color: white;
+  box-shadow: $modern-shadow-lg;
+  transition: transform $modern-transition-base, box-shadow $modern-transition-base;
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: $modern-shadow-2xl;
+  }
+
+  .stat-value {
+    font-size: $modern-fs-3xl;
+    font-weight: $modern-fw-bold;
+    margin-bottom: $modern-spacing-2;
+  }
+
+  .stat-label {
+    font-size: $modern-fs-sm;
+    opacity: 0.9;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  &.stat-success {
+    background: linear-gradient(135deg, $modern-success 0%, $modern-success-dark 100%);
+  }
+
+  &.stat-warning {
+    background: linear-gradient(135deg, $modern-warning 0%, $modern-warning-dark 100%);
+  }
+
+  &.stat-error {
+    background: linear-gradient(135deg, $modern-error 0%, $modern-error-dark 100%);
+  }
+
+  &.stat-info {
+    background: linear-gradient(135deg, $modern-info 0%, $modern-info-dark 100%);
+  }
+}
+
+// ============================================
+// MODERN LOADING STATES
+// ============================================
+
+.skeleton {
+  background: linear-gradient(90deg, $modern-gray-200 25%, $modern-gray-300 50%, $modern-gray-200 75%);
+  background-size: 200% 100%;
+  animation: skeleton-loading 1.5s ease-in-out infinite;
+  border-radius: $modern-radius-md;
+}
+
+@keyframes skeleton-loading {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+.skeleton-text {
+  height: 16px;
+  margin-bottom: $modern-spacing-2;
+  border-radius: $modern-radius-sm;
+}
+
+.skeleton-title {
+  height: 24px;
+  width: 60%;
+  margin-bottom: $modern-spacing-3;
+  border-radius: $modern-radius-sm;
+}
+
+.skeleton-avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: $modern-radius-full;
+}
+
+// ============================================
+// MODERN ANIMATIONS
+// ============================================
+
+.fade-in {
+  animation: fadeIn 0.3s ease-in;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.slide-in {
+  animation: slideIn 0.3s ease-out;
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateX(-20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+// ============================================
+// MODERN TOOLTIPS
+// ============================================
+
+[data-tooltip] {
+  position: relative;
+  cursor: pointer;
+
+  &::before {
+    content: attr(data-tooltip);
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-8px);
+    padding: $modern-spacing-2 $modern-spacing-3;
+    background: $modern-gray-900;
+    color: white;
+    font-size: $modern-fs-xs;
+    border-radius: $modern-radius-md;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity $modern-transition-base, transform $modern-transition-base;
+    z-index: 1000;
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    border: 4px solid transparent;
+    border-top-color: $modern-gray-900;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity $modern-transition-base;
+  }
+
+  &:hover::before {
+    opacity: 1;
+    transform: translateX(-50%) translateY(-12px);
+  }
+
+  &:hover::after {
+    opacity: 1;
+  }
+}
+
+// ============================================
+// MODERN PROGRESS BARS
+// ============================================
+
+.modern-progress {
+  height: 8px;
+  background: $modern-gray-200;
+  border-radius: $modern-radius-full;
+  overflow: hidden;
+  position: relative;
+
+  .progress-bar {
+    height: 100%;
+    background: linear-gradient(90deg, $modern-primary 0%, $modern-primary-dark 100%);
+    border-radius: $modern-radius-full;
+    transition: width 0.5s ease;
+    position: relative;
+    overflow: hidden;
+
+    &::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+      animation: shimmer 2s infinite;
+    }
+  }
+
+  &.progress-success .progress-bar {
+    background: linear-gradient(90deg, $modern-success 0%, $modern-success-dark 100%);
+  }
+
+  &.progress-warning .progress-bar {
+    background: linear-gradient(90deg, $modern-warning 0%, $modern-warning-dark 100%);
+  }
+
+  &.progress-error .progress-bar {
+    background: linear-gradient(90deg, $modern-error 0%, $modern-error-dark 100%);
+  }
+}
+
+@keyframes shimmer {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+// ============================================
+// MODERN SWITCHES & TOGGLES
+// ============================================
+
+.modern-switch {
+  position: relative;
+  display: inline-block;
+  width: 48px;
+  height: 24px;
+
+  input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+
+    &:checked + .switch-slider {
+      background: $modern-primary;
+
+      &::before {
+        transform: translateX(24px);
+      }
+    }
+
+    &:focus + .switch-slider {
+      box-shadow: 0 0 0 3px rgba(0, 102, 255, 0.2);
+    }
+  }
+
+  .switch-slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: $modern-gray-300;
+    transition: all $modern-transition-base;
+    border-radius: $modern-radius-full;
+
+    &::before {
+      position: absolute;
+      content: '';
+      height: 18px;
+      width: 18px;
+      left: 3px;
+      bottom: 3px;
+      background: white;
+      transition: transform $modern-transition-base;
+      border-radius: $modern-radius-full;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    }
+  }
+}
+
+// ============================================
+// MODERN CHIPS/TAGS
+// ============================================
+
+.modern-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: $modern-spacing-2;
+  padding: $modern-spacing-2 $modern-spacing-3;
+  background: $modern-gray-100;
+  color: $modern-gray-700;
+  border-radius: $modern-radius-full;
+  font-size: $modern-fs-sm;
+  font-weight: $modern-fw-medium;
+  transition: all $modern-transition-base;
+
+  &:hover {
+    background: $modern-gray-200;
+  }
+
+  &.chip-primary {
+    background: $modern-primary-lighter;
+    color: $modern-primary-dark;
+  }
+
+  &.chip-success {
+    background: $modern-success-bg;
+    color: $modern-success-dark;
+  }
+
+  &.chip-warning {
+    background: $modern-warning-bg;
+    color: $modern-warning-dark;
+  }
+
+  &.chip-error {
+    background: $modern-error-bg;
+    color: $modern-error-dark;
+  }
+
+  .chip-remove {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 16px;
+    height: 16px;
+    border-radius: $modern-radius-full;
+    transition: background $modern-transition-base;
+
+    &:hover {
+      background: rgba(0,0,0,0.1);
+    }
+  }
+}
+
+// ============================================
+// MODERN EMPTY STATES
+// ============================================
+
+.empty-state {
+  text-align: center;
+  padding: $modern-spacing-8 $modern-spacing-4;
+
+  .empty-icon {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto $modern-spacing-4;
+    color: $modern-gray-400;
+  }
+
+  .empty-title {
+    font-size: $modern-fs-xl;
+    font-weight: $modern-fw-bold;
+    color: $modern-gray-900;
+    margin-bottom: $modern-spacing-2;
+  }
+
+  .empty-description {
+    font-size: $modern-fs-sm;
+    color: $modern-gray-600;
+    max-width: 400px;
+    margin: 0 auto $modern-spacing-4;
+  }
+}
+
+// ============================================
+// SCROLLBARS (Chrome, Safari, Edge)
+// ============================================
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: $modern-gray-100;
+}
+
+::-webkit-scrollbar-thumb {
+  background: $modern-gray-300;
+  border-radius: $modern-radius-full;
+
+  &:hover {
+    background: $modern-gray-400;
+  }
+}
+
+// ============================================
+// ACCESSIBILITY IMPROVEMENTS
+// ============================================
+
+// Focus visible styles
+*:focus-visible {
+  outline: 2px solid $modern-primary;
+  outline-offset: 2px;
+}
+
+// Skip to main content link
+.skip-to-main {
+  position: absolute;
+  left: -9999px;
+  z-index: 999;
+  padding: $modern-spacing-3 $modern-spacing-4;
+  background: $modern-primary;
+  color: white;
+  text-decoration: none;
+  border-radius: $modern-radius-md;
+
+  &:focus {
+    left: $modern-spacing-4;
+    top: $modern-spacing-4;
+  }
+}
+
+// High contrast mode support
+@media (prefers-contrast: high) {
+  .card,
+  .btn,
+  .form-control {
+    border-width: 2px !important;
+  }
+}
+
+// Reduced motion support
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

@@ -1,0 +1,184 @@
+@import '../../../styles/modern-theme.scss';
+
+.modern-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: $modern-spacing-2;
+  font-family: $modern-font-primary;
+  font-weight: $modern-fw-semibold;
+  border-radius: $modern-btn-radius;
+  cursor: pointer;
+  transition: all $modern-transition-base;
+  border: none;
+  outline: none;
+  position: relative;
+  white-space: nowrap;
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+
+  &:not(:disabled):active {
+    transform: translateY(0) scale(0.98);
+  }
+}
+
+// Sizes
+.modern-btn-sm {
+  padding: 0.5rem 1rem;
+  font-size: $modern-fs-xs;
+  height: 32px;
+}
+
+.modern-btn-md {
+  padding: $modern-btn-padding-y $modern-btn-padding-x;
+  font-size: $modern-fs-sm;
+  height: 40px;
+}
+
+.modern-btn-lg {
+  padding: 1rem 2rem;
+  font-size: $modern-fs-base;
+  height: 48px;
+}
+
+// Full Width
+.modern-btn-full {
+  width: 100%;
+}
+
+// Variants
+.modern-btn-primary {
+  background: $modern-primary;
+  color: #FFFFFF;
+  box-shadow: $modern-shadow-sm;
+
+  &:not(:disabled):hover {
+    background: $modern-primary-dark;
+    box-shadow: $modern-shadow-md;
+    transform: translateY(-1px);
+  }
+
+  &:not(:disabled):focus {
+    box-shadow: 0 0 0 3px rgba(0, 102, 255, 0.2);
+  }
+}
+
+.modern-btn-secondary {
+  background: $modern-gray-100;
+  color: $modern-gray-700;
+  border: 1px solid $modern-gray-300;
+
+  &:not(:disabled):hover {
+    background: $modern-gray-200;
+    border-color: $modern-gray-400;
+  }
+
+  &:not(:disabled):focus {
+    box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.05);
+  }
+}
+
+.modern-btn-success {
+  background: $modern-success;
+  color: #FFFFFF;
+  box-shadow: $modern-shadow-sm;
+
+  &:not(:disabled):hover {
+    background: $modern-success-dark;
+    box-shadow: $modern-shadow-md;
+    transform: translateY(-1px);
+  }
+}
+
+.modern-btn-error {
+  background: $modern-error;
+  color: #FFFFFF;
+  box-shadow: $modern-shadow-sm;
+
+  &:not(:disabled):hover {
+    background: $modern-error-light;
+    box-shadow: $modern-shadow-md;
+    transform: translateY(-1px);
+  }
+}
+
+.modern-btn-warning {
+  background: $modern-warning;
+  color: #FFFFFF;
+  box-shadow: $modern-shadow-sm;
+
+  &:not(:disabled):hover {
+    background: $modern-warning-dark;
+    box-shadow: $modern-shadow-md;
+    transform: translateY(-1px);
+  }
+}
+
+.modern-btn-outline {
+  background: transparent;
+  color: $modern-primary;
+  border: 2px solid $modern-primary;
+
+  &:not(:disabled):hover {
+    background: $modern-primary-lighter;
+  }
+}
+
+.modern-btn-ghost {
+  background: transparent;
+  color: $modern-gray-700;
+  border: none;
+
+  &:not(:disabled):hover {
+    background: $modern-gray-100;
+  }
+}
+
+// Loading State
+.modern-btn-loading {
+  pointer-events: none;
+
+  .modern-btn-text {
+    opacity: 0.6;
+  }
+}
+
+.modern-btn-spinner {
+  width: 16px;
+  height: 16px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-top-color: #FFFFFF;
+  border-radius: 50%;
+  animation: modern-btn-spin 0.6s linear infinite;
+}
+
+@keyframes modern-btn-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+// Icon Styles
+.modern-btn-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  svg {
+    width: 16px;
+    height: 16px;
+  }
+}
+
+.modern-btn-sm .modern-btn-icon svg {
+  width: 14px;
+  height: 14px;
+}
+
+.modern-btn-lg .modern-btn-icon svg {
+  width: 18px;
+  height: 18px;
+}

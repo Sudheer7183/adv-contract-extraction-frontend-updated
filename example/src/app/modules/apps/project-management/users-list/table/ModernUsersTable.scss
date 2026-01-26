@@ -1,0 +1,136 @@
+@import '../../../../../../styles/modern-theme.scss';
+
+.modern-users-table-wrapper {
+  width: 100%;
+  margin-top: $modern-spacing-4;
+}
+
+.modern-table-empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: $modern-spacing-12 $modern-spacing-6;
+  text-align: center;
+
+  .empty-icon {
+    font-size: 4rem;
+    margin-bottom: $modern-spacing-4;
+    opacity: 0.5;
+  }
+
+  .empty-text {
+    font-size: $modern-fs-lg;
+    font-weight: $modern-fw-semibold;
+    color: $modern-gray-700;
+    margin-bottom: $modern-spacing-2;
+  }
+
+  .empty-subtext {
+    font-size: $modern-fs-sm;
+    color: $modern-gray-500;
+  }
+}
+
+.modern-table-pagination {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: $modern-spacing-6 0 0;
+  border-top: 1px solid $modern-gray-200;
+  margin-top: $modern-spacing-6;
+  flex-wrap: wrap;
+  gap: $modern-spacing-4;
+}
+
+.pagination-left {
+  display: flex;
+  align-items: center;
+  gap: $modern-spacing-4;
+}
+
+.modern-pagination-select {
+  @include modern-input;
+  width: auto;
+  min-width: 140px;
+  cursor: pointer;
+  height: 38px;
+  padding: $modern-spacing-2 $modern-spacing-3;
+  font-size: $modern-fs-sm;
+}
+
+.pagination-info {
+  font-size: $modern-fs-sm;
+  color: $modern-gray-600;
+  white-space: nowrap;
+}
+
+.pagination-right {
+  display: flex;
+  align-items: center;
+  gap: $modern-spacing-3;
+}
+
+.modern-pagination-btn {
+  @include modern-button-secondary;
+  padding: $modern-spacing-2 $modern-spacing-4;
+  height: 38px;
+  display: inline-flex;
+  align-items: center;
+  gap: $modern-spacing-2;
+  white-space: nowrap;
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+
+    &:hover {
+      background: $modern-gray-100;
+      border-color: $modern-gray-300;
+      transform: none;
+    }
+  }
+
+  span {
+    font-size: $modern-fs-base;
+  }
+}
+
+.pagination-page-info {
+  font-size: $modern-fs-sm;
+  color: $modern-gray-600;
+  padding: 0 $modern-spacing-2;
+  white-space: nowrap;
+}
+
+// Responsive
+@media (max-width: 768px) {
+  .modern-table-pagination {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .pagination-left,
+  .pagination-right {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .modern-pagination-btn {
+    flex: 1;
+  }
+
+  .pagination-page-info {
+    text-align: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .pagination-right {
+    flex-wrap: wrap;
+  }
+
+  .modern-pagination-btn {
+    min-width: 100px;
+  }
+}

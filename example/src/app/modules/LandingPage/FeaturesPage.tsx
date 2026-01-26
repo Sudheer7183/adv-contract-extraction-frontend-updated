@@ -25,57 +25,31 @@ import Footer from "./footer";
 import { Link } from 'react-router-dom'
 const FeaturesPage: React.FC = () => {
   return (
-    <div style={{ fontFamily: "sans-serif", color: "#1f2937" }}>
-      <header
-        style={{
-          padding: "20px 40px",
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "center",
-          backgroundColor: "#ffffff",
-          borderBottom: "1px solid #e5e7eb"
-        }}
-      >
-        {/* <h1 style={{ fontSize: "24px", fontWeight: 700, color: "var(--accent)" }}>Aavanam</h1> */}
-        <img
-          src="/media/Aavanamlogo.jpg"
-          alt="Aavanam Logo"
-          style={{ height: "50px", objectFit: "contain",border:"1px solidrgb(0, 0, 0)" }}
-        />
-        <div style={{ display: "flex", gap: "12px" }}>
-          {/* <ThemeToggle /> */}
-          <ThemeColorDropdown />
-          <Link to='/auth/login'>
-          <button
-            style={{
-              padding: "10px 20px",
-              border: "1px solid #d1d5db",
-              borderRadius: "8px",
-              backgroundColor: "#fff",
-              cursor: "pointer"
-              
-            }}
-            type='button'
-          >
-            Sign In
-          </button>
-          </Link>
-          <Link to="/Signup">
-          <button
-            style={{
-              padding: "10px 20px",
-              backgroundColor: "var(--accent)",
-              color: "#fff",
-              borderRadius: "8px",
-              border: "none",
-              cursor: "pointer"
-            }}
-            type="button"
-          >
-            Sign Up
-          </button>
-          </Link>
-
+    <div className="fade-in">
+      <header className="card mb-0" style={{ borderRadius: 0, borderLeft: 0, borderRight: 0, borderTop: 0 }}>
+        <div className="card-body">
+          <div className="modern-flex flex-between" style={{ alignItems: "center" }}>
+            <img
+              src="/media/Aavanamlogo.jpg"
+              alt="Aavanam Logo"
+              style={{ height: "50px", objectFit: "contain" }}
+            />
+            <div className="modern-flex" style={{ gap: "12px", alignItems: "center" }}>
+              <div className="hide-mobile">
+                <ThemeColorDropdown />
+              </div>
+              <Link to='/auth/login'>
+                <button className="btn btn-light" type='button'>
+                  Sign In
+                </button>
+              </Link>
+              <Link to="/Signup">
+                <button className="btn btn-primary" type="button">
+                  Sign Up
+                </button>
+              </Link>
+            </div>
+          </div>
         </div>
       </header>
 

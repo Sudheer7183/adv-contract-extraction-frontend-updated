@@ -2,6 +2,7 @@ import React from 'react';
 import { Navigate, Outlet, Route, Routes } from 'react-router-dom'
 import { PageLink, PageTitle } from '../../../../_metronic/layout/core'
 import { UsersListWrapper } from './users-list/UsersList'
+import { ModernUsersListWrapper } from './users-list/ModernUsersList'
 
 const usersBreadcrumbs: Array<PageLink> = [
   {
@@ -27,7 +28,7 @@ const UsersPage = () => {
           element={
             <>
               <PageTitle>Projects list</PageTitle>
-              <UsersListWrapper />
+              <ModernUsersListWrapper />
             </>
           }
         />

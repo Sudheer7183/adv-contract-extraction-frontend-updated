@@ -26,16 +26,19 @@ export function HeaderWrapper() {
   const [logo, setLogo] = useState("")
 
   useEffect(() => {
-    request(`${BASEURL}graphql/`, companyDetail, {}, {Authorization: `Bearer ${localStorage.getItem('Token')}`}).then((res: any) => {
-      setLogo(res.allSiteSetting[0].companyLogo)
-    })
+    request(`${BASEURL}graphql/`, companyDetail, {}, {Authorization: `Bearer ${localStorage.getItem('Token')}`})
+      .then((res: any) => {
+        if (res?.allSiteSetting && res.allSiteSetting.length > 0 && res.allSiteSetting[0]?.companyLogo) {
+          setLogo(res.allSiteSetting[0].companyLogo)
+        }
+      })
+      .catch((err) => {
+        console.log('Error fetching company details:', err)
+      })
   }, [])
 
 
   console.log("ToggleMenuclick", viewerPageActive)
-
-  const themeColor = localStorage.getItem("themeColor")
-  const asideTheme11 = "asideTheme" + "-" + themeColor + " " + "header-brand"
 
   return (
     <div
@@ -44,7 +47,7 @@ export function HeaderWrapper() {
       {...attributes.headerMenu}
     >
       {/* begin::Brand */}
-      <div className={asideTheme11}>
+      <div className='header-brand'>
         {/* <div className='header-brand' style={{ backgroundColor: '#00A4EF' }}> */}
         {aside.minimize && (
           <div

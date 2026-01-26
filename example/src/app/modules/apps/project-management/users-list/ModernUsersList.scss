@@ -1,0 +1,55 @@
+@import '../../../../../styles/modern-theme.scss';
+
+.modern-users-list {
+  width: 100%;
+}
+
+// Override the header styles for modern look
+.card-header {
+  padding: $modern-spacing-6;
+  border-bottom: 1px solid $modern-gray-200;
+  background: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: $modern-spacing-4;
+}
+
+.card-toolbar {
+  display: flex;
+  align-items: center;
+  gap: $modern-spacing-3;
+}
+
+// Search component styling
+.search-input-group {
+  position: relative;
+  max-width: 400px;
+
+  input {
+    @include modern-input;
+    padding-left: 2.5rem;
+  }
+
+  .search-icon {
+    position: absolute;
+    left: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: $modern-gray-400;
+    pointer-events: none;
+  }
+}
+
+// Responsive
+@media (max-width: 768px) {
+  .card-header {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .search-input-group {
+    max-width: 100%;
+  }
+}

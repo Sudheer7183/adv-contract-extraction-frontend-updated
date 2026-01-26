@@ -12,8 +12,6 @@ import { ThemeColor } from '../../../partials/layout/theme-mode/ThemeColor'
 const HeaderToolbar = () => {
   const { classes } = useLayout()
   const [status, setStatus] = useState<string>('1')
-  const themeColor1 = localStorage.getItem("themeColor")
-  const asideTheme11 = "asideTheme" + "-" + themeColor1 + " " + "toolbar d-flex align-items-stretch"
 
 
 
@@ -91,10 +89,7 @@ const HeaderToolbar = () => {
 
 
   return (
-    <div className={asideTheme11}>
-      {/* <div className='toolbar d-flex align-items-stretch'
-    // style={{ color: 'white' }}
-    > */}
+    <div className='toolbar d-flex align-items-stretch'>
       {/* begin::Toolbar container */}
       <div
         className={`${classes.headerContainer.join(
